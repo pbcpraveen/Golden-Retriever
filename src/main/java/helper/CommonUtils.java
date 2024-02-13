@@ -1,4 +1,4 @@
-package evaluator;
+package helper;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -11,7 +11,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.File;
+import java.io.*;
 import java.util.List;
 
 public class CommonUtils {
@@ -39,10 +39,30 @@ public class CommonUtils {
     }
 
     public static boolean isValidNode(Node node) {
+        if (node == null) return false;
         if (node instanceof Text) {
             String value = node.getNodeValue().trim();
             return !value.equals("");
         }
         return true;
     }
+
+    public static String readFile(String path) throws FileNotFoundException {
+        File file = new File(path);
+        if (!file.exists()) {
+            throw new RuntimeException("File not found: " + path);
+        }
+
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        StringBuilder result = new StringBuilder();
+        try {
+            String line;
+            while ( (line = reader.readLine() ) != null)
+                result.append(line.trim());
+            return result.toString();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

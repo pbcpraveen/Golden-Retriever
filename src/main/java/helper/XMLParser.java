@@ -1,4 +1,4 @@
-package parser_utils;
+package helper;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;

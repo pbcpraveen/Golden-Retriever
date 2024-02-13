@@ -1,11 +1,14 @@
-package parser_utils;
+package evaluator;
 
-import evaluator.FilterFunctions;
-import evaluator.RelativePathFunctions;
+import helper.FilterFunctions;
+import helper.RelativePathFunctions;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.w3c.dom.Node;
+import helper.XMLParser;
+import parser_util.XPathLexer;
+import parser_util.XPathParser;
 
 import java.io.IOException;
 import java.util.*;

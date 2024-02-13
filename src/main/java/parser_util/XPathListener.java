@@ -1,5 +1,5 @@
 // Generated from XPath.g by ANTLR 4.13.1
-package parser_utils;
+package parser_util;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
