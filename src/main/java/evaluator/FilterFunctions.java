@@ -57,8 +57,12 @@ public class FilterFunctions {
         }
     }
 
-    public static boolean identical(Node n1, Node n2) {
-        return n1.isEqualNode(n2);
+    public static boolean identical(Node n1, Node n2)
+    {
+        if (n1.getNodeType() == Node.TEXT_NODE && n2.getNodeType() == Node.TEXT_NODE)
+            return n1.getNodeValue().equals(n2.getNodeValue());
+        else
+            return n1.isEqualNode(n2);
     }
 
 

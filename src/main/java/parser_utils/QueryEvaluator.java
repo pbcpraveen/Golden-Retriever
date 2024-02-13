@@ -1,11 +1,11 @@
 package parser_utils;
+
 import evaluator.FilterFunctions;
 import evaluator.RelativePathFunctions;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.w3c.dom.Node;
-
 
 import java.io.IOException;
 import java.util.*;
@@ -119,8 +119,12 @@ public class QueryEvaluator {
     private EvaluatorState handleRelativePath(EvaluatorState state) {
         int childCount = state.tree.getChildCount();
         if (childCount == 1){
-            state.tree = state.tree.getChild(0);
-            state = compute(state);
+            EvaluatorState intermediateResult = new EvaluatorState(state);
+            intermediateResult.tree = state.tree.getChild(0);
+            intermediateResult = compute(intermediateResult);
+            assert intermediateResult != null;
+            state.currentCandidates = intermediateResult.currentCandidates;
+            state.filterMask = intermediateResult.filterMask;
         }
         else if (childCount == 2){
             EvaluatorState intermediateResult = new EvaluatorState(state);
@@ -128,7 +132,10 @@ public class QueryEvaluator {
             intermediateResult = compute(intermediateResult);
             assert intermediateResult != null;
             intermediateResult.tree = state.tree.getChild(1);
-            state = compute(intermediateResult);
+            intermediateResult = compute(intermediateResult);
+            assert intermediateResult != null;
+            state.currentCandidates = intermediateResult.currentCandidates;
+            state.filterMask = intermediateResult.filterMask;
         }
         else{
             EvaluatorState intermediateResult = new EvaluatorState(state);
@@ -146,7 +153,10 @@ public class QueryEvaluator {
                         intermediateResult2.currentCandidates);
             }else{
                 intermediateResult.tree = state.tree.getChild(2);
-                state = compute(intermediateResult);
+                intermediateResult = compute(intermediateResult);
+                assert intermediateResult != null;
+                state.currentCandidates = intermediateResult.currentCandidates;
+                state.filterMask = intermediateResult.filterMask;
             }
         }
         return state;
@@ -188,20 +198,11 @@ public class QueryEvaluator {
     }
 
     public EvaluatorState handleParent(EvaluatorState state) {
-        if (!state.isRecursive){
-            List<Node> result = new ArrayList<>();
-            for (Node n : state.currentCandidates){
-                result.addAll(RelativePathFunctions.getParent(n));
-            }
-            state.currentCandidates = result;
+        Set<Node> result = new HashSet<>();
+        for (Node n : state.currentCandidates){
+            result.addAll(RelativePathFunctions.getParent(n));
         }
-        else{
-            List<Node> result = new ArrayList<>();
-            for (Node n : state.currentCandidates){
-                result.addAll(RelativePathFunctions.getParent(n));
-            }
-            state.currentCandidates = result;
-        }
+        state.currentCandidates = new ArrayList<>(result);
         return state;
     }
 
@@ -261,7 +262,11 @@ public class QueryEvaluator {
                 intermediateResult.currentCandidates = Collections.singletonList(state.currentCandidates.get(i));
                 intermediateResult = compute(intermediateResult);
                 assert intermediateResult != null;
-                result.add(intermediateResult.filterMask.stream().anyMatch(x -> x));
+                if (intermediateResult.filterMask.size() == 0){
+                    result.add(intermediateResult.currentCandidates.size() > 0);
+                } else {
+                    result.add(intermediateResult.filterMask.stream().anyMatch(x -> x));
+                }
             }
             state.filterMask = result;
             return state;

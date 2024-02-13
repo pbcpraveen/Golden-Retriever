@@ -1,6 +1,5 @@
 package evaluator;
 
-import evaluator.CommonUtils;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -27,40 +26,50 @@ public class RelativePathFunctions {
         for (int i = 0; i < children.getLength(); i++) {
             Node child = children.item(i);
             if (child.getNodeName().equals(tag)) {
-                result.add(child.cloneNode(true));
+                result.add(child);
             }
         }
         return result;
     }
 
      public static List<Node> getAllChildren(Node node) {
+        if (node == null)
+            return Collections.emptyList();
          List<Node> result = new ArrayList<>();
          NodeList children = node.getChildNodes();
          for (int i = 0; i < children.getLength(); i++) {
              Node child = children.item(i);
              if (CommonUtils.isValidNode(child))
-                result.add(child.cloneNode(true));
+                result.add(child);
          }
          return result;
      }
 
      public static List<Node> getAllChildrenRecursive(Node node) {
+         if (node == null)
+             return Collections.emptyList();
+        if (node.getChildNodes().getLength() == 0)
+            return Collections.emptyList();
          List<Node> result = new ArrayList<>();
          NodeList children = node.getChildNodes();
          for (int i = 0; i < children.getLength(); i++) {
              Node child = children.item(i);
              if (CommonUtils.isValidNode(child))
-                result.add(child.cloneNode(true));
+                result.add(child);
              result.addAll(getAllChildrenRecursive(child));
          }
          return result;
      }
 
      public static List<Node> getParent(Node node) {
-         return Collections.singletonList((Node) node.getParentNode());
+        if (node.getParentNode() == null)
+            return Collections.emptyList();
+        return Collections.singletonList(node.getParentNode());
      }
 
      public static Node getText(Node node) {
+        if (node.getNodeType() == Node.TEXT_NODE)
+            return null;
         String value =  node.getTextContent();
         // create a new text node
         return node.getOwnerDocument().createTextNode(value);
