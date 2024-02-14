@@ -1,291 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><result><SCENE><TITLE>SCENE II.  CAESAR's house.</TITLE>
-<STAGEDIR>Thunder and lightning. Enter CAESAR, in his
-night-gown</STAGEDIR>
-
-<SPEECH>
-<SPEAKER>CAESAR</SPEAKER>
-<LINE>Nor heaven nor earth have been at peace to-night:</LINE>
-<LINE>Thrice hath Calpurnia in her sleep cried out,</LINE>
-<LINE>'Help, ho! they murder Caesar!' Who's within?</LINE>
-</SPEECH>
-
-
-<STAGEDIR>Enter a Servant</STAGEDIR>
-
-<SPEECH>
-<SPEAKER>Servant</SPEAKER>
-<LINE>My lord?</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>CAESAR</SPEAKER>
-<LINE>Go bid the priests do present sacrifice</LINE>
-<LINE>And bring me their opinions of success.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>Servant</SPEAKER>
-<LINE>I will, my lord.</LINE>
-</SPEECH>
-
-<STAGEDIR>Exit</STAGEDIR>
-<STAGEDIR>Enter CALPURNIA</STAGEDIR>
-
-<SPEECH>
-<SPEAKER>CALPURNIA</SPEAKER>
-<LINE>What mean you, Caesar? think you to walk forth?</LINE>
-<LINE>You shall not stir out of your house to-day.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>CAESAR</SPEAKER>
-<LINE>Caesar shall forth: the things that threaten'd me</LINE>
-<LINE>Ne'er look'd but on my back; when they shall see</LINE>
-<LINE>The face of Caesar, they are vanished.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>CALPURNIA</SPEAKER>
-<LINE>Caesar, I never stood on ceremonies,</LINE>
-<LINE>Yet now they fright me. There is one within,</LINE>
-<LINE>Besides the things that we have heard and seen,</LINE>
-<LINE>Recounts most horrid sights seen by the watch.</LINE>
-<LINE>A lioness hath whelped in the streets;</LINE>
-<LINE>And graves have yawn'd, and yielded up their dead;</LINE>
-<LINE>Fierce fiery warriors fought upon the clouds,</LINE>
-<LINE>In ranks and squadrons and right form of war,</LINE>
-<LINE>Which drizzled blood upon the Capitol;</LINE>
-<LINE>The noise of battle hurtled in the air,</LINE>
-<LINE>Horses did neigh, and dying men did groan,</LINE>
-<LINE>And ghosts did shriek and squeal about the streets.</LINE>
-<LINE>O Caesar! these things are beyond all use,</LINE>
-<LINE>And I do fear them.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>CAESAR</SPEAKER>
-<LINE>What can be avoided</LINE>
-<LINE>Whose end is purposed by the mighty gods?</LINE>
-<LINE>Yet Caesar shall go forth; for these predictions</LINE>
-<LINE>Are to the world in general as to Caesar.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>CALPURNIA</SPEAKER>
-<LINE>When beggars die, there are no comets seen;</LINE>
-<LINE>The heavens themselves blaze forth the death of princes.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>CAESAR</SPEAKER>
-<LINE>Cowards die many times before their deaths;</LINE>
-<LINE>The valiant never taste of death but once.</LINE>
-<LINE>Of all the wonders that I yet have heard.</LINE>
-<LINE>It seems to me most strange that men should fear;</LINE>
-<LINE>Seeing that death, a necessary end,</LINE>
-<LINE>Will come when it will come.</LINE>
-<STAGEDIR>Re-enter Servant</STAGEDIR>
-<LINE>What say the augurers?</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>Servant</SPEAKER>
-<LINE>They would not have you to stir forth to-day.</LINE>
-<LINE>Plucking the entrails of an offering forth,</LINE>
-<LINE>They could not find a heart within the beast.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>CAESAR</SPEAKER>
-<LINE>The gods do this in shame of cowardice:</LINE>
-<LINE>Caesar should be a beast without a heart,</LINE>
-<LINE>If he should stay at home to-day for fear.</LINE>
-<LINE>No, Caesar shall not: danger knows full well</LINE>
-<LINE>That Caesar is more dangerous than he:</LINE>
-<LINE>We are two lions litter'd in one day,</LINE>
-<LINE>And I the elder and more terrible:</LINE>
-<LINE>And Caesar shall go forth.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>CALPURNIA</SPEAKER>
-<LINE>Alas, my lord,</LINE>
-<LINE>Your wisdom is consumed in confidence.</LINE>
-<LINE>Do not go forth to-day: call it my fear</LINE>
-<LINE>That keeps you in the house, and not your own.</LINE>
-<LINE>We'll send Mark Antony to the senate-house:</LINE>
-<LINE>And he shall say you are not well to-day:</LINE>
-<LINE>Let me, upon my knee, prevail in this.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>CAESAR</SPEAKER>
-<LINE>Mark Antony shall say I am not well,</LINE>
-<LINE>And, for thy humour, I will stay at home.</LINE>
-<STAGEDIR>Enter DECIUS BRUTUS</STAGEDIR>
-<LINE>Here's Decius Brutus, he shall tell them so.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>DECIUS BRUTUS</SPEAKER>
-<LINE>Caesar, all hail! good morrow, worthy Caesar:</LINE>
-<LINE>I come to fetch you to the senate-house.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>CAESAR</SPEAKER>
-<LINE>And you are come in very happy time,</LINE>
-<LINE>To bear my greeting to the senators</LINE>
-<LINE>And tell them that I will not come to-day:</LINE>
-<LINE>Cannot, is false, and that I dare not, falser:</LINE>
-<LINE>I will not come to-day: tell them so, Decius.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>CALPURNIA</SPEAKER>
-<LINE>Say he is sick.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>CAESAR</SPEAKER>
-<LINE>Shall Caesar send a lie?</LINE>
-<LINE>Have I in conquest stretch'd mine arm so far,</LINE>
-<LINE>To be afraid to tell graybeards the truth?</LINE>
-<LINE>Decius, go tell them Caesar will not come.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>DECIUS BRUTUS</SPEAKER>
-<LINE>Most mighty Caesar, let me know some cause,</LINE>
-<LINE>Lest I be laugh'd at when I tell them so.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>CAESAR</SPEAKER>
-<LINE>The cause is in my will: I will not come;</LINE>
-<LINE>That is enough to satisfy the senate.</LINE>
-<LINE>But for your private satisfaction,</LINE>
-<LINE>Because I love you, I will let you know:</LINE>
-<LINE>Calpurnia here, my wife, stays me at home:</LINE>
-<LINE>She dreamt to-night she saw my statua,</LINE>
-<LINE>Which, like a fountain with an hundred spouts,</LINE>
-<LINE>Did run pure blood: and many lusty Romans</LINE>
-<LINE>Came smiling, and did bathe their hands in it:</LINE>
-<LINE>And these does she apply for warnings, and portents,</LINE>
-<LINE>And evils imminent; and on her knee</LINE>
-<LINE>Hath begg'd that I will stay at home to-day.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>DECIUS BRUTUS</SPEAKER>
-<LINE>This dream is all amiss interpreted;</LINE>
-<LINE>It was a vision fair and fortunate:</LINE>
-<LINE>Your statue spouting blood in many pipes,</LINE>
-<LINE>In which so many smiling Romans bathed,</LINE>
-<LINE>Signifies that from you great Rome shall suck</LINE>
-<LINE>Reviving blood, and that great men shall press</LINE>
-<LINE>For tinctures, stains, relics and cognizance.</LINE>
-<LINE>This by Calpurnia's dream is signified.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>CAESAR</SPEAKER>
-<LINE>And this way have you well expounded it.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>DECIUS BRUTUS</SPEAKER>
-<LINE>I have, when you have heard what I can say:</LINE>
-<LINE>And know it now: the senate have concluded</LINE>
-<LINE>To give this day a crown to mighty Caesar.</LINE>
-<LINE>If you shall send them word you will not come,</LINE>
-<LINE>Their minds may change. Besides, it were a mock</LINE>
-<LINE>Apt to be render'd, for some one to say</LINE>
-<LINE>'Break up the senate till another time,</LINE>
-<LINE>When Caesar's wife shall meet with better dreams.'</LINE>
-<LINE>If Caesar hide himself, shall they not whisper</LINE>
-<LINE>'Lo, Caesar is afraid'?</LINE>
-<LINE>Pardon me, Caesar; for my dear dear love</LINE>
-<LINE>To our proceeding bids me tell you this;</LINE>
-<LINE>And reason to my love is liable.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>CAESAR</SPEAKER>
-<LINE>How foolish do your fears seem now, Calpurnia!</LINE>
-<LINE>I am ashamed I did yield to them.</LINE>
-<LINE>Give me my robe, for I will go.</LINE>
-<STAGEDIR>Enter PUBLIUS, BRUTUS, LIGARIUS, METELLUS, CASCA,
-TREBONIUS, and CINNA</STAGEDIR>
-<LINE>And look where Publius is come to fetch me.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>PUBLIUS</SPEAKER>
-<LINE>Good morrow, Caesar.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>CAESAR</SPEAKER>
-<LINE>Welcome, Publius.</LINE>
-<LINE>What, Brutus, are you stirr'd so early too?</LINE>
-<LINE>Good morrow, Casca. Caius Ligarius,</LINE>
-<LINE>Caesar was ne'er so much your enemy</LINE>
-<LINE>As that same ague which hath made you lean.</LINE>
-<LINE>What is 't o'clock?</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>BRUTUS</SPEAKER>
-<LINE>Caesar, 'tis strucken eight.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>CAESAR</SPEAKER>
-<LINE>I thank you for your pains and courtesy.</LINE>
-<STAGEDIR>Enter ANTONY</STAGEDIR>
-<LINE>See! Antony, that revels long o' nights,</LINE>
-<LINE>Is notwithstanding up. Good morrow, Antony.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>ANTONY</SPEAKER>
-<LINE>So to most noble Caesar.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>CAESAR</SPEAKER>
-<LINE>Bid them prepare within:</LINE>
-<LINE>I am to blame to be thus waited for.</LINE>
-<LINE>Now, Cinna: now, Metellus: what, Trebonius!</LINE>
-<LINE>I have an hour's talk in store for you;</LINE>
-<LINE>Remember that you call on me to-day:</LINE>
-<LINE>Be near me, that I may remember you.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>TREBONIUS</SPEAKER>
-<LINE>Caesar, I will:</LINE>
-<STAGEDIR>Aside</STAGEDIR>
-<LINE>and so near will I be,</LINE>
-<LINE>That your best friends shall wish I had been further.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>CAESAR</SPEAKER>
-<LINE>Good friends, go in, and taste some wine with me;</LINE>
-<LINE>And we, like friends, will straightway go together.</LINE>
-</SPEECH>
-
-<SPEECH>
-<SPEAKER>BRUTUS</SPEAKER>
-<LINE><STAGEDIR>Aside</STAGEDIR>  That every like is not the same, O Caesar,</LINE>
-<LINE>The heart of Brutus yearns to think upon!</LINE>
-</SPEECH>
-
-
-<STAGEDIR>Exeunt</STAGEDIR>
-</SCENE><SCENE><TITLE>SCENE I.  Rome. Before the Capitol; the Senate sitting above.</TITLE>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><result><SCENE><TITLE>SCENE I.  Rome. Before the Capitol; the Senate sitting above.</TITLE>
 <STAGEDIR>A crowd of people; among them ARTEMIDORUS and the
 Soothsayer. Flourish. Enter CAESAR, BRUTUS,
 CASSIUS, CASCA, DECIUS BRUTUS, METELLUS CIMBER,
@@ -1712,4 +1425,291 @@ them a Soothsayer</STAGEDIR>
 
 
 <STAGEDIR>Exit</STAGEDIR>
+</SCENE><SCENE><TITLE>SCENE II.  CAESAR's house.</TITLE>
+<STAGEDIR>Thunder and lightning. Enter CAESAR, in his
+night-gown</STAGEDIR>
+
+<SPEECH>
+<SPEAKER>CAESAR</SPEAKER>
+<LINE>Nor heaven nor earth have been at peace to-night:</LINE>
+<LINE>Thrice hath Calpurnia in her sleep cried out,</LINE>
+<LINE>'Help, ho! they murder Caesar!' Who's within?</LINE>
+</SPEECH>
+
+
+<STAGEDIR>Enter a Servant</STAGEDIR>
+
+<SPEECH>
+<SPEAKER>Servant</SPEAKER>
+<LINE>My lord?</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>CAESAR</SPEAKER>
+<LINE>Go bid the priests do present sacrifice</LINE>
+<LINE>And bring me their opinions of success.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>Servant</SPEAKER>
+<LINE>I will, my lord.</LINE>
+</SPEECH>
+
+<STAGEDIR>Exit</STAGEDIR>
+<STAGEDIR>Enter CALPURNIA</STAGEDIR>
+
+<SPEECH>
+<SPEAKER>CALPURNIA</SPEAKER>
+<LINE>What mean you, Caesar? think you to walk forth?</LINE>
+<LINE>You shall not stir out of your house to-day.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>CAESAR</SPEAKER>
+<LINE>Caesar shall forth: the things that threaten'd me</LINE>
+<LINE>Ne'er look'd but on my back; when they shall see</LINE>
+<LINE>The face of Caesar, they are vanished.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>CALPURNIA</SPEAKER>
+<LINE>Caesar, I never stood on ceremonies,</LINE>
+<LINE>Yet now they fright me. There is one within,</LINE>
+<LINE>Besides the things that we have heard and seen,</LINE>
+<LINE>Recounts most horrid sights seen by the watch.</LINE>
+<LINE>A lioness hath whelped in the streets;</LINE>
+<LINE>And graves have yawn'd, and yielded up their dead;</LINE>
+<LINE>Fierce fiery warriors fought upon the clouds,</LINE>
+<LINE>In ranks and squadrons and right form of war,</LINE>
+<LINE>Which drizzled blood upon the Capitol;</LINE>
+<LINE>The noise of battle hurtled in the air,</LINE>
+<LINE>Horses did neigh, and dying men did groan,</LINE>
+<LINE>And ghosts did shriek and squeal about the streets.</LINE>
+<LINE>O Caesar! these things are beyond all use,</LINE>
+<LINE>And I do fear them.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>CAESAR</SPEAKER>
+<LINE>What can be avoided</LINE>
+<LINE>Whose end is purposed by the mighty gods?</LINE>
+<LINE>Yet Caesar shall go forth; for these predictions</LINE>
+<LINE>Are to the world in general as to Caesar.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>CALPURNIA</SPEAKER>
+<LINE>When beggars die, there are no comets seen;</LINE>
+<LINE>The heavens themselves blaze forth the death of princes.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>CAESAR</SPEAKER>
+<LINE>Cowards die many times before their deaths;</LINE>
+<LINE>The valiant never taste of death but once.</LINE>
+<LINE>Of all the wonders that I yet have heard.</LINE>
+<LINE>It seems to me most strange that men should fear;</LINE>
+<LINE>Seeing that death, a necessary end,</LINE>
+<LINE>Will come when it will come.</LINE>
+<STAGEDIR>Re-enter Servant</STAGEDIR>
+<LINE>What say the augurers?</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>Servant</SPEAKER>
+<LINE>They would not have you to stir forth to-day.</LINE>
+<LINE>Plucking the entrails of an offering forth,</LINE>
+<LINE>They could not find a heart within the beast.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>CAESAR</SPEAKER>
+<LINE>The gods do this in shame of cowardice:</LINE>
+<LINE>Caesar should be a beast without a heart,</LINE>
+<LINE>If he should stay at home to-day for fear.</LINE>
+<LINE>No, Caesar shall not: danger knows full well</LINE>
+<LINE>That Caesar is more dangerous than he:</LINE>
+<LINE>We are two lions litter'd in one day,</LINE>
+<LINE>And I the elder and more terrible:</LINE>
+<LINE>And Caesar shall go forth.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>CALPURNIA</SPEAKER>
+<LINE>Alas, my lord,</LINE>
+<LINE>Your wisdom is consumed in confidence.</LINE>
+<LINE>Do not go forth to-day: call it my fear</LINE>
+<LINE>That keeps you in the house, and not your own.</LINE>
+<LINE>We'll send Mark Antony to the senate-house:</LINE>
+<LINE>And he shall say you are not well to-day:</LINE>
+<LINE>Let me, upon my knee, prevail in this.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>CAESAR</SPEAKER>
+<LINE>Mark Antony shall say I am not well,</LINE>
+<LINE>And, for thy humour, I will stay at home.</LINE>
+<STAGEDIR>Enter DECIUS BRUTUS</STAGEDIR>
+<LINE>Here's Decius Brutus, he shall tell them so.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>DECIUS BRUTUS</SPEAKER>
+<LINE>Caesar, all hail! good morrow, worthy Caesar:</LINE>
+<LINE>I come to fetch you to the senate-house.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>CAESAR</SPEAKER>
+<LINE>And you are come in very happy time,</LINE>
+<LINE>To bear my greeting to the senators</LINE>
+<LINE>And tell them that I will not come to-day:</LINE>
+<LINE>Cannot, is false, and that I dare not, falser:</LINE>
+<LINE>I will not come to-day: tell them so, Decius.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>CALPURNIA</SPEAKER>
+<LINE>Say he is sick.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>CAESAR</SPEAKER>
+<LINE>Shall Caesar send a lie?</LINE>
+<LINE>Have I in conquest stretch'd mine arm so far,</LINE>
+<LINE>To be afraid to tell graybeards the truth?</LINE>
+<LINE>Decius, go tell them Caesar will not come.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>DECIUS BRUTUS</SPEAKER>
+<LINE>Most mighty Caesar, let me know some cause,</LINE>
+<LINE>Lest I be laugh'd at when I tell them so.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>CAESAR</SPEAKER>
+<LINE>The cause is in my will: I will not come;</LINE>
+<LINE>That is enough to satisfy the senate.</LINE>
+<LINE>But for your private satisfaction,</LINE>
+<LINE>Because I love you, I will let you know:</LINE>
+<LINE>Calpurnia here, my wife, stays me at home:</LINE>
+<LINE>She dreamt to-night she saw my statua,</LINE>
+<LINE>Which, like a fountain with an hundred spouts,</LINE>
+<LINE>Did run pure blood: and many lusty Romans</LINE>
+<LINE>Came smiling, and did bathe their hands in it:</LINE>
+<LINE>And these does she apply for warnings, and portents,</LINE>
+<LINE>And evils imminent; and on her knee</LINE>
+<LINE>Hath begg'd that I will stay at home to-day.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>DECIUS BRUTUS</SPEAKER>
+<LINE>This dream is all amiss interpreted;</LINE>
+<LINE>It was a vision fair and fortunate:</LINE>
+<LINE>Your statue spouting blood in many pipes,</LINE>
+<LINE>In which so many smiling Romans bathed,</LINE>
+<LINE>Signifies that from you great Rome shall suck</LINE>
+<LINE>Reviving blood, and that great men shall press</LINE>
+<LINE>For tinctures, stains, relics and cognizance.</LINE>
+<LINE>This by Calpurnia's dream is signified.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>CAESAR</SPEAKER>
+<LINE>And this way have you well expounded it.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>DECIUS BRUTUS</SPEAKER>
+<LINE>I have, when you have heard what I can say:</LINE>
+<LINE>And know it now: the senate have concluded</LINE>
+<LINE>To give this day a crown to mighty Caesar.</LINE>
+<LINE>If you shall send them word you will not come,</LINE>
+<LINE>Their minds may change. Besides, it were a mock</LINE>
+<LINE>Apt to be render'd, for some one to say</LINE>
+<LINE>'Break up the senate till another time,</LINE>
+<LINE>When Caesar's wife shall meet with better dreams.'</LINE>
+<LINE>If Caesar hide himself, shall they not whisper</LINE>
+<LINE>'Lo, Caesar is afraid'?</LINE>
+<LINE>Pardon me, Caesar; for my dear dear love</LINE>
+<LINE>To our proceeding bids me tell you this;</LINE>
+<LINE>And reason to my love is liable.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>CAESAR</SPEAKER>
+<LINE>How foolish do your fears seem now, Calpurnia!</LINE>
+<LINE>I am ashamed I did yield to them.</LINE>
+<LINE>Give me my robe, for I will go.</LINE>
+<STAGEDIR>Enter PUBLIUS, BRUTUS, LIGARIUS, METELLUS, CASCA,
+TREBONIUS, and CINNA</STAGEDIR>
+<LINE>And look where Publius is come to fetch me.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>PUBLIUS</SPEAKER>
+<LINE>Good morrow, Caesar.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>CAESAR</SPEAKER>
+<LINE>Welcome, Publius.</LINE>
+<LINE>What, Brutus, are you stirr'd so early too?</LINE>
+<LINE>Good morrow, Casca. Caius Ligarius,</LINE>
+<LINE>Caesar was ne'er so much your enemy</LINE>
+<LINE>As that same ague which hath made you lean.</LINE>
+<LINE>What is 't o'clock?</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>BRUTUS</SPEAKER>
+<LINE>Caesar, 'tis strucken eight.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>CAESAR</SPEAKER>
+<LINE>I thank you for your pains and courtesy.</LINE>
+<STAGEDIR>Enter ANTONY</STAGEDIR>
+<LINE>See! Antony, that revels long o' nights,</LINE>
+<LINE>Is notwithstanding up. Good morrow, Antony.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>ANTONY</SPEAKER>
+<LINE>So to most noble Caesar.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>CAESAR</SPEAKER>
+<LINE>Bid them prepare within:</LINE>
+<LINE>I am to blame to be thus waited for.</LINE>
+<LINE>Now, Cinna: now, Metellus: what, Trebonius!</LINE>
+<LINE>I have an hour's talk in store for you;</LINE>
+<LINE>Remember that you call on me to-day:</LINE>
+<LINE>Be near me, that I may remember you.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>TREBONIUS</SPEAKER>
+<LINE>Caesar, I will:</LINE>
+<STAGEDIR>Aside</STAGEDIR>
+<LINE>and so near will I be,</LINE>
+<LINE>That your best friends shall wish I had been further.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>CAESAR</SPEAKER>
+<LINE>Good friends, go in, and taste some wine with me;</LINE>
+<LINE>And we, like friends, will straightway go together.</LINE>
+</SPEECH>
+
+<SPEECH>
+<SPEAKER>BRUTUS</SPEAKER>
+<LINE><STAGEDIR>Aside</STAGEDIR>  That every like is not the same, O Caesar,</LINE>
+<LINE>The heart of Brutus yearns to think upon!</LINE>
+</SPEECH>
+
+
+<STAGEDIR>Exeunt</STAGEDIR>
 </SCENE></result>
