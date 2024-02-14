@@ -59,7 +59,6 @@ public class RelativePathFunctions {
         if (node.getNodeType() == Node.TEXT_NODE)
             return null;
         String value =  node.getTextContent();
-        // create a new text node
         return node.getOwnerDocument().createTextNode(value);
      }
 

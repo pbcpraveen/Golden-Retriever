@@ -1,19 +1,16 @@
-// Generated from XPath.g by ANTLR 4.13.1
+// Generated from XQuery.g by ANTLR 4.13.1
 package parser_util;
-
-import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.atn.ATN;
-import org.antlr.v4.runtime.atn.ATNDeserializer;
-import org.antlr.v4.runtime.atn.ParserATNSimulator;
-import org.antlr.v4.runtime.atn.PredictionContextCache;
+import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
-import org.antlr.v4.runtime.tree.ParseTreeListener;
-import org.antlr.v4.runtime.tree.TerminalNode;
-
+import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.misc.*;
+import org.antlr.v4.runtime.tree.*;
 import java.util.List;
+import java.util.Iterator;
+import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue"})
-public class XPathParser extends Parser {
+public class XQueryParser extends Parser {
 	static { RuntimeMetaData.checkVersion("4.13.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -89,7 +86,7 @@ public class XPathParser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "XPath.g"; }
+	public String getGrammarFileName() { return "XQuery.g"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -100,7 +97,7 @@ public class XPathParser extends Parser {
 	@Override
 	public ATN getATN() { return _ATN; }
 
-	public XPathParser(TokenStream input) {
+	public XQueryParser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
@@ -116,11 +113,11 @@ public class XPathParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_eval; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).enterEval(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterEval(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).exitEval(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitEval(this);
 		}
 	}
 
@@ -147,27 +144,27 @@ public class XPathParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class AbsolutePathContext extends ParserRuleContext {
-		public TerminalNode DocOpen() { return getToken(XPathParser.DocOpen, 0); }
+		public TerminalNode DocOpen() { return getToken(XQueryParser.DocOpen, 0); }
 		public FileNameContext fileName() {
 			return getRuleContext(FileNameContext.class,0);
 		}
-		public TerminalNode CloseParen() { return getToken(XPathParser.CloseParen, 0); }
-		public TerminalNode ImmediateDescendent() { return getToken(XPathParser.ImmediateDescendent, 0); }
+		public TerminalNode CloseParen() { return getToken(XQueryParser.CloseParen, 0); }
+		public TerminalNode ImmediateDescendent() { return getToken(XQueryParser.ImmediateDescendent, 0); }
 		public RelativePathContext relativePath() {
 			return getRuleContext(RelativePathContext.class,0);
 		}
-		public TerminalNode Descendent() { return getToken(XPathParser.Descendent, 0); }
+		public TerminalNode Descendent() { return getToken(XQueryParser.Descendent, 0); }
 		public AbsolutePathContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_absolutePath; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).enterAbsolutePath(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterAbsolutePath(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).exitAbsolutePath(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitAbsolutePath(this);
 		}
 	}
 
@@ -250,9 +247,9 @@ public class XPathParser extends Parser {
 		public RelativePathContext relativePath(int i) {
 			return getRuleContext(RelativePathContext.class,i);
 		}
-		public TerminalNode ImmediateDescendent() { return getToken(XPathParser.ImmediateDescendent, 0); }
-		public TerminalNode Descendent() { return getToken(XPathParser.Descendent, 0); }
-		public TerminalNode Comma() { return getToken(XPathParser.Comma, 0); }
+		public TerminalNode ImmediateDescendent() { return getToken(XQueryParser.ImmediateDescendent, 0); }
+		public TerminalNode Descendent() { return getToken(XQueryParser.Descendent, 0); }
+		public TerminalNode Comma() { return getToken(XQueryParser.Comma, 0); }
 		public FilterContext filter() {
 			return getRuleContext(FilterContext.class,0);
 		}
@@ -262,11 +259,11 @@ public class XPathParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_relativePath; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).enterRelativePath(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterRelativePath(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).exitRelativePath(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitRelativePath(this);
 		}
 	}
 
@@ -337,7 +334,7 @@ public class XPathParser extends Parser {
 			setState(69);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
-			while ( _alt!=2 && _alt!= ATN.INVALID_ALT_NUMBER ) {
+			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
@@ -413,18 +410,18 @@ public class XPathParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ChildrenContext extends ParserRuleContext {
-		public TerminalNode Children() { return getToken(XPathParser.Children, 0); }
+		public TerminalNode Children() { return getToken(XQueryParser.Children, 0); }
 		public ChildrenContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_children; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).enterChildren(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterChildren(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).exitChildren(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitChildren(this);
 		}
 	}
 
@@ -451,18 +448,18 @@ public class XPathParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class CurrentContext extends ParserRuleContext {
-		public TerminalNode Current() { return getToken(XPathParser.Current, 0); }
+		public TerminalNode Current() { return getToken(XQueryParser.Current, 0); }
 		public CurrentContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_current; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).enterCurrent(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterCurrent(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).exitCurrent(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitCurrent(this);
 		}
 	}
 
@@ -489,18 +486,18 @@ public class XPathParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ParentContext extends ParserRuleContext {
-		public TerminalNode Parent() { return getToken(XPathParser.Parent, 0); }
+		public TerminalNode Parent() { return getToken(XQueryParser.Parent, 0); }
 		public ParentContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_parent; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).enterParent(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterParent(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).exitParent(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitParent(this);
 		}
 	}
 
@@ -527,22 +524,22 @@ public class XPathParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class FilterContext extends ParserRuleContext {
-		public TerminalNode OpenBracket() { return getToken(XPathParser.OpenBracket, 0); }
+		public TerminalNode OpenBracket() { return getToken(XQueryParser.OpenBracket, 0); }
 		public FContext f() {
 			return getRuleContext(FContext.class,0);
 		}
-		public TerminalNode CloseBracket() { return getToken(XPathParser.CloseBracket, 0); }
+		public TerminalNode CloseBracket() { return getToken(XQueryParser.CloseBracket, 0); }
 		public FilterContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_filter; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).enterFilter(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterFilter(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).exitFilter(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitFilter(this);
 		}
 	}
 
@@ -573,7 +570,7 @@ public class XPathParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class AttributeContext extends ParserRuleContext {
-		public TerminalNode At() { return getToken(XPathParser.At, 0); }
+		public TerminalNode At() { return getToken(XQueryParser.At, 0); }
 		public AttNameContext attName() {
 			return getRuleContext(AttNameContext.class,0);
 		}
@@ -583,11 +580,11 @@ public class XPathParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_attribute; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).enterAttribute(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterAttribute(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).exitAttribute(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitAttribute(this);
 		}
 	}
 
@@ -616,20 +613,20 @@ public class XPathParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class TextFunctionContext extends ParserRuleContext {
-		public TerminalNode Text() { return getToken(XPathParser.Text, 0); }
-		public TerminalNode OpenParen() { return getToken(XPathParser.OpenParen, 0); }
-		public TerminalNode CloseParen() { return getToken(XPathParser.CloseParen, 0); }
+		public TerminalNode Text() { return getToken(XQueryParser.Text, 0); }
+		public TerminalNode OpenParen() { return getToken(XQueryParser.OpenParen, 0); }
+		public TerminalNode CloseParen() { return getToken(XQueryParser.CloseParen, 0); }
 		public TextFunctionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_textFunction; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).enterTextFunction(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterTextFunction(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).exitTextFunction(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitTextFunction(this);
 		}
 	}
 
@@ -660,22 +657,22 @@ public class XPathParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class InParenthesisContext extends ParserRuleContext {
-		public TerminalNode OpenParen() { return getToken(XPathParser.OpenParen, 0); }
+		public TerminalNode OpenParen() { return getToken(XQueryParser.OpenParen, 0); }
 		public RelativePathContext relativePath() {
 			return getRuleContext(RelativePathContext.class,0);
 		}
-		public TerminalNode CloseParen() { return getToken(XPathParser.CloseParen, 0); }
+		public TerminalNode CloseParen() { return getToken(XQueryParser.CloseParen, 0); }
 		public InParenthesisContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_inParenthesis; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).enterInParenthesis(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterInParenthesis(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).exitInParenthesis(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitInParenthesis(this);
 		}
 	}
 
@@ -712,35 +709,35 @@ public class XPathParser extends Parser {
 		public RelativePathContext relativePath(int i) {
 			return getRuleContext(RelativePathContext.class,i);
 		}
-		public TerminalNode Equal() { return getToken(XPathParser.Equal, 0); }
-		public TerminalNode Eq() { return getToken(XPathParser.Eq, 0); }
-		public TerminalNode Equals() { return getToken(XPathParser.Equals, 0); }
-		public TerminalNode Is() { return getToken(XPathParser.Is, 0); }
+		public TerminalNode Equal() { return getToken(XQueryParser.Equal, 0); }
+		public TerminalNode Eq() { return getToken(XQueryParser.Eq, 0); }
+		public TerminalNode Equals() { return getToken(XQueryParser.Equals, 0); }
+		public TerminalNode Is() { return getToken(XQueryParser.Is, 0); }
 		public StringConstantTextContext stringConstantText() {
 			return getRuleContext(StringConstantTextContext.class,0);
 		}
-		public TerminalNode OpenParen() { return getToken(XPathParser.OpenParen, 0); }
+		public TerminalNode OpenParen() { return getToken(XQueryParser.OpenParen, 0); }
 		public List<FContext> f() {
 			return getRuleContexts(FContext.class);
 		}
 		public FContext f(int i) {
 			return getRuleContext(FContext.class,i);
 		}
-		public TerminalNode CloseParen() { return getToken(XPathParser.CloseParen, 0); }
-		public TerminalNode Not() { return getToken(XPathParser.Not, 0); }
-		public TerminalNode And() { return getToken(XPathParser.And, 0); }
-		public TerminalNode Or() { return getToken(XPathParser.Or, 0); }
+		public TerminalNode CloseParen() { return getToken(XQueryParser.CloseParen, 0); }
+		public TerminalNode Not() { return getToken(XQueryParser.Not, 0); }
+		public TerminalNode And() { return getToken(XQueryParser.And, 0); }
+		public TerminalNode Or() { return getToken(XQueryParser.Or, 0); }
 		public FContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_f; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).enterF(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterF(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).exitF(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitF(this);
 		}
 	}
 
@@ -841,7 +838,7 @@ public class XPathParser extends Parser {
 			setState(131);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
-			while ( _alt!=2 && _alt!= ATN.INVALID_ALT_NUMBER ) {
+			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
@@ -895,18 +892,18 @@ public class XPathParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class TagNameContext extends ParserRuleContext {
-		public TerminalNode PathTag() { return getToken(XPathParser.PathTag, 0); }
+		public TerminalNode PathTag() { return getToken(XQueryParser.PathTag, 0); }
 		public TagNameContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_tagName; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).enterTagName(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterTagName(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).exitTagName(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitTagName(this);
 		}
 	}
 
@@ -933,18 +930,18 @@ public class XPathParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class AttNameContext extends ParserRuleContext {
-		public TerminalNode StringConstant() { return getToken(XPathParser.StringConstant, 0); }
+		public TerminalNode StringConstant() { return getToken(XQueryParser.StringConstant, 0); }
 		public AttNameContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_attName; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).enterAttName(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterAttName(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).exitAttName(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitAttName(this);
 		}
 	}
 
@@ -971,18 +968,18 @@ public class XPathParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class FileNameContext extends ParserRuleContext {
-		public TerminalNode StringConstant() { return getToken(XPathParser.StringConstant, 0); }
+		public TerminalNode StringConstant() { return getToken(XQueryParser.StringConstant, 0); }
 		public FileNameContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_fileName; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).enterFileName(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterFileName(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).exitFileName(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitFileName(this);
 		}
 	}
 
@@ -1009,18 +1006,18 @@ public class XPathParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class StringConstantTextContext extends ParserRuleContext {
-		public TerminalNode StringConstant() { return getToken(XPathParser.StringConstant, 0); }
+		public TerminalNode StringConstant() { return getToken(XQueryParser.StringConstant, 0); }
 		public StringConstantTextContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_stringConstantText; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).enterStringConstantText(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterStringConstantText(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XPathListener ) ((XPathListener)listener).exitStringConstantText(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitStringConstantText(this);
 		}
 	}
 

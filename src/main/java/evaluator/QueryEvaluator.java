@@ -1,13 +1,10 @@
 package evaluator;
 
-import helper.FilterFunctions;
-import helper.RelativePathFunctions;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
-import helper.XMLParser;
-import parser_util.XPathLexer;
-import parser_util.XPathParser;
+import parser_util.XQueryLexer;
+import parser_util.XQueryParser;
 
 import java.io.IOException;
 
@@ -24,17 +21,17 @@ public class QueryEvaluator {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        XPathLexer lexer = new XPathLexer(stream);
+        XQueryLexer lexer = new XQueryLexer(stream);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-        XPathParser parser = new XPathParser(tokens);
+        XQueryParser parser = new XQueryParser(tokens);
         state = new EvaluatorState(parser.eval(), "", null, false);
     }
 
     public QueryEvaluator(String query) {
         CharStream stream = CharStreams.fromString(query);
-        XPathLexer lexer = new XPathLexer(stream);
+        XQueryLexer lexer = new XQueryLexer(stream);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-        XPathParser parser = new XPathParser(tokens);
+        XQueryParser parser = new XQueryParser(tokens);
         state = new EvaluatorState(parser.eval(), "", null, false);
     }
 
@@ -46,46 +43,46 @@ public class QueryEvaluator {
     }
 
     public static EvaluatorState compute(EvaluatorState state) {
-        if (state.tree instanceof XPathParser.EvalContext){
+        if (state.tree instanceof XQueryParser.EvalContext){
             state.tree = state.tree.getChild(0);
             return compute(state);
         }
-        else if (state.tree instanceof XPathParser.AbsolutePathContext){
+        else if (state.tree instanceof XQueryParser.AbsolutePathContext){
             return handleAbsolutePath(state);
         }
-        else if (state.tree instanceof XPathParser.RelativePathContext){
+        else if (state.tree instanceof XQueryParser.RelativePathContext){
             return handleRelativePath(state);
         }
 
-        else if (state.tree instanceof XPathParser.TagNameContext){
+        else if (state.tree instanceof XQueryParser.TagNameContext){
             return handleTagName(state);
         }
 
-        else if (state.tree instanceof XPathParser.ChildrenContext){
+        else if (state.tree instanceof XQueryParser.ChildrenContext){
             return handleChildren(state);
         }
-        else if (state.tree instanceof XPathParser.CurrentContext){
+        else if (state.tree instanceof XQueryParser.CurrentContext){
             return handleCurrent(state);
         }
-        else if (state.tree instanceof XPathParser.ParentContext){
+        else if (state.tree instanceof XQueryParser.ParentContext){
             return handleParent(state);
         }
-        else if (state.tree instanceof XPathParser.AttributeContext){
+        else if (state.tree instanceof XQueryParser.AttributeContext){
             return handleAttribute(state);
         }
-        else if (state.tree instanceof XPathParser.TextFunctionContext){
+        else if (state.tree instanceof XQueryParser.TextFunctionContext){
             return handleTextFunction(state);
         }
-        else if (state.tree instanceof XPathParser.InParenthesisContext) {
+        else if (state.tree instanceof XQueryParser.InParenthesisContext) {
             return handleInParenthesis(state);
         }
-        else if (state.tree instanceof XPathParser.FilterContext){
+        else if (state.tree instanceof XQueryParser.FilterContext){
             return handleFilter(state);
         }
-        else if (state.tree instanceof XPathParser.StringConstantTextContext){
+        else if (state.tree instanceof XQueryParser.StringConstantTextContext){
             return handleStringConstantText(state);
         }
-        else if (state.tree instanceof XPathParser.FContext) {
+        else if (state.tree instanceof XQueryParser.FContext) {
             return computeFilter(state);
         }
         return null;

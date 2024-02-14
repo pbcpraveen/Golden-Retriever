@@ -6,6 +6,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Text;
 
 import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -62,6 +64,35 @@ public class CommonUtils {
             return result.toString();
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public static Node createTextNode(String text) {
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder;
+        try {
+            dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.newDocument();
+            return doc.createTextNode(text);
+        } catch (ParserConfigurationException e) {
+            return null;
+        }
+    }
+
+    public static Node createNode(String nodeName, List<Node> children) {
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder;
+        try {
+            dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.newDocument();
+            Element node = doc.createElement(nodeName);
+            for (Node child : children) {
+                Node copiedNode = doc.importNode(child, true);
+                node.appendChild(copiedNode);
+            }
+            return node;
+        } catch (ParserConfigurationException e) {
+            return null;
         }
     }
 

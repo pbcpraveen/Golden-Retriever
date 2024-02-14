@@ -7,7 +7,7 @@
 /* attName → StringConstant */
 /* fileName → StringConstant */
 
-grammar XPath;
+grammar XQuery;
 
 eval
     : absolutePath
