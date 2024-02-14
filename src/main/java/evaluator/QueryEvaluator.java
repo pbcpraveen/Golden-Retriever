@@ -9,6 +9,7 @@ import parser_util.XQueryParser;
 import java.io.IOException;
 
 import static evaluator.XPathEvaluatorUtils.*;
+import static evaluator.XqueryEvaluatorUtils.handleXquery;
 
 public class QueryEvaluator {
     public EvaluatorState state;
@@ -46,6 +47,9 @@ public class QueryEvaluator {
         if (state.tree instanceof XQueryParser.EvalContext){
             state.tree = state.tree.getChild(0);
             return compute(state);
+        }
+        else if (state.tree instanceof XQueryParser.XqueryContext){
+            return handleXquery(state);
         }
         else if (state.tree instanceof XQueryParser.AbsolutePathContext){
             return handleAbsolutePath(state);
