@@ -8,7 +8,6 @@ import java.util.List;
 public class EvaluatorState {
     public ParseTree tree;
     public String path;
-    public Node dataNode;
     public boolean isRecursive;
     public List<Node> currentCandidates;
 
@@ -17,7 +16,6 @@ public class EvaluatorState {
     public EvaluatorState(ParseTree tree, String path, Node dataNode, boolean isRecursive) {
         this.tree = tree;
         this.path = path;
-        this.dataNode = dataNode;
         this.isRecursive = isRecursive;
         this.currentCandidates = new ArrayList<>();
         this.filterMask = new ArrayList<>();
@@ -26,7 +24,6 @@ public class EvaluatorState {
     public EvaluatorState(EvaluatorState state) {
         this.tree = state.tree;
         this.path = state.path;
-        this.dataNode = state.dataNode;
         this.isRecursive = state.isRecursive;
         this.currentCandidates = new ArrayList<>(state.currentCandidates);
         this.filterMask = new ArrayList<>(state.filterMask);
