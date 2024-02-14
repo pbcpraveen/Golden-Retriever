@@ -9,7 +9,7 @@ import parser_util.XQueryParser;
 import java.io.IOException;
 
 import static evaluator.XPathEvaluatorUtils.*;
-import static evaluator.XqueryEvaluatorUtils.handleXquery;
+import static evaluator.XqueryEvaluatorUtils.*;
 
 public class QueryEvaluator {
     public EvaluatorState state;
@@ -88,6 +88,24 @@ public class QueryEvaluator {
         }
         else if (state.tree instanceof XQueryParser.FContext) {
             return computeFilter(state);
+        }
+        else if (state.tree instanceof XQueryParser.VariableContext) {
+            return handleVariable(state);
+        }
+        else if (state.tree instanceof XQueryParser.StringConstantContext) {
+            return handleStringConstant(state);
+        }
+        else if (state.tree instanceof XQueryParser.XqueryInParenthesisContext) {
+            return handleXqueryInParenthesis(state);
+        }
+        else if (state.tree instanceof XQueryParser.NewTagContext){
+            return handleNewTag(state);
+        }
+        else if (state.tree instanceof XQueryParser.ForBodyContext) {
+            return handleForBody(state);
+        }
+        else if (state.tree instanceof XQueryParser.LetClauseContext) {
+            return handleLetClause(state);
         }
         return null;
     }

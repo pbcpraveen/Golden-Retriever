@@ -20,15 +20,19 @@ eval
 
 xquery
     : variable
-    | StringConstant
+    | stringConstant
     | absolutePath
     | xqueryInParenthesis
     | xquery Comma xquery
-    | xquery ImmediateDescendent xquery
-    | xquery Descendent xquery
+    | xquery ImmediateDescendent relativePath
+    | xquery Descendent relativePath
     | newTag
     | forBody
     | letClause
+    ;
+
+stringConstant
+    : stringConstantText
     ;
 
 variable
