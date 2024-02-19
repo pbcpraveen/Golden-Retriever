@@ -18,15 +18,15 @@ public interface XQueryListener extends ParseTreeListener {
 	 */
 	void exitEval(XQueryParser.EvalContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link XQueryParser#xquery}.
+	 * Enter a parse tree produced by {@link XQueryParser#xq}.
 	 * @param ctx the parse tree
 	 */
-	void enterXquery(XQueryParser.XqueryContext ctx);
+	void enterXq(XQueryParser.XqContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link XQueryParser#xquery}.
+	 * Exit a parse tree produced by {@link XQueryParser#xq}.
 	 * @param ctx the parse tree
 	 */
-	void exitXquery(XQueryParser.XqueryContext ctx);
+	void exitXq(XQueryParser.XqContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link XQueryParser#stringConstant}.
 	 * @param ctx the parse tree
@@ -38,25 +38,15 @@ public interface XQueryListener extends ParseTreeListener {
 	 */
 	void exitStringConstant(XQueryParser.StringConstantContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link XQueryParser#variable}.
+	 * Enter a parse tree produced by {@link XQueryParser#xqInParenthesis}.
 	 * @param ctx the parse tree
 	 */
-	void enterVariable(XQueryParser.VariableContext ctx);
+	void enterXqInParenthesis(XQueryParser.XqInParenthesisContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link XQueryParser#variable}.
+	 * Exit a parse tree produced by {@link XQueryParser#xqInParenthesis}.
 	 * @param ctx the parse tree
 	 */
-	void exitVariable(XQueryParser.VariableContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link XQueryParser#xqueryInParenthesis}.
-	 * @param ctx the parse tree
-	 */
-	void enterXqueryInParenthesis(XQueryParser.XqueryInParenthesisContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link XQueryParser#xqueryInParenthesis}.
-	 * @param ctx the parse tree
-	 */
-	void exitXqueryInParenthesis(XQueryParser.XqueryInParenthesisContext ctx);
+	void exitXqInParenthesis(XQueryParser.XqInParenthesisContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link XQueryParser#newTag}.
 	 * @param ctx the parse tree
@@ -98,6 +88,16 @@ public interface XQueryListener extends ParseTreeListener {
 	 */
 	void exitForVariables(XQueryParser.ForVariablesContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link XQueryParser#moreLoopVariables}.
+	 * @param ctx the parse tree
+	 */
+	void enterMoreLoopVariables(XQueryParser.MoreLoopVariablesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XQueryParser#moreLoopVariables}.
+	 * @param ctx the parse tree
+	 */
+	void exitMoreLoopVariables(XQueryParser.MoreLoopVariablesContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link XQueryParser#loopVariableAssignment}.
 	 * @param ctx the parse tree
 	 */
@@ -127,6 +127,16 @@ public interface XQueryListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLetVariables(XQueryParser.LetVariablesContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XQueryParser#moreLetVariables}.
+	 * @param ctx the parse tree
+	 */
+	void enterMoreLetVariables(XQueryParser.MoreLetVariablesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XQueryParser#moreLetVariables}.
+	 * @param ctx the parse tree
+	 */
+	void exitMoreLetVariables(XQueryParser.MoreLetVariablesContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link XQueryParser#letVariableAssignment}.
 	 * @param ctx the parse tree
@@ -367,4 +377,34 @@ public interface XQueryListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitStringConstantText(XQueryParser.StringConstantTextContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XQueryParser#variable}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariable(XQueryParser.VariableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XQueryParser#variable}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariable(XQueryParser.VariableContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XQueryParser#openTag}.
+	 * @param ctx the parse tree
+	 */
+	void enterOpenTag(XQueryParser.OpenTagContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XQueryParser#openTag}.
+	 * @param ctx the parse tree
+	 */
+	void exitOpenTag(XQueryParser.OpenTagContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XQueryParser#closeTag}.
+	 * @param ctx the parse tree
+	 */
+	void enterCloseTag(XQueryParser.CloseTagContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XQueryParser#closeTag}.
+	 * @param ctx the parse tree
+	 */
+	void exitCloseTag(XQueryParser.CloseTagContext ctx);
 }

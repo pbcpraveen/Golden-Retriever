@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import static evaluator.XPathEvaluatorUtils.*;
 import static evaluator.XqueryEvaluatorUtils.*;
+import static helper.CommonUtils.getValidChild;
 
 public class QueryEvaluator {
     public EvaluatorState state;
@@ -25,7 +26,7 @@ public class QueryEvaluator {
         XQueryLexer lexer = new XQueryLexer(stream);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         XQueryParser parser = new XQueryParser(tokens);
-        state = new EvaluatorState(parser.eval(), "", null, false);
+        this.state = new EvaluatorState(parser.eval(), "", null, false);
     }
 
     public QueryEvaluator(String query) {
@@ -39,75 +40,87 @@ public class QueryEvaluator {
     public QueryEvaluator(EvaluatorState state) {
         this.state = state;
     }
+
     public EvaluatorState evaluate() {
         return compute(state);
     }
 
     public static EvaluatorState compute(EvaluatorState state) {
-        if (state.tree instanceof XQueryParser.EvalContext){
-            state.tree = state.tree.getChild(0);
+        if (state.tree instanceof XQueryParser.EvalContext) {
+            state.tree = getValidChild(state.tree, 0);
             return compute(state);
-        }
-        else if (state.tree instanceof XQueryParser.XqueryContext){
+        } else if (state.tree instanceof XQueryParser.XqContext) {
             return handleXquery(state);
-        }
-        else if (state.tree instanceof XQueryParser.AbsolutePathContext){
+        } else if (state.tree instanceof XQueryParser.AbsolutePathContext) {
             return handleAbsolutePath(state);
-        }
-        else if (state.tree instanceof XQueryParser.RelativePathContext){
+        } else if (state.tree instanceof XQueryParser.RelativePathContext) {
             return handleRelativePath(state);
-        }
-
-        else if (state.tree instanceof XQueryParser.TagNameContext){
+        } else if (state.tree instanceof XQueryParser.TagNameContext) {
             return handleTagName(state);
-        }
-
-        else if (state.tree instanceof XQueryParser.ChildrenContext){
+        } else if (state.tree instanceof XQueryParser.ChildrenContext) {
             return handleChildren(state);
-        }
-        else if (state.tree instanceof XQueryParser.CurrentContext){
+        } else if (state.tree instanceof XQueryParser.CurrentContext) {
             return handleCurrent(state);
-        }
-        else if (state.tree instanceof XQueryParser.ParentContext){
+        } else if (state.tree instanceof XQueryParser.ParentContext) {
             return handleParent(state);
-        }
-        else if (state.tree instanceof XQueryParser.AttributeContext){
+        } else if (state.tree instanceof XQueryParser.AttributeContext) {
             return handleAttribute(state);
-        }
-        else if (state.tree instanceof XQueryParser.TextFunctionContext){
+        } else if (state.tree instanceof XQueryParser.TextFunctionContext) {
             return handleTextFunction(state);
-        }
-        else if (state.tree instanceof XQueryParser.InParenthesisContext) {
+        } else if (state.tree instanceof XQueryParser.InParenthesisContext) {
             return handleInParenthesis(state);
-        }
-        else if (state.tree instanceof XQueryParser.FilterContext){
+        } else if (state.tree instanceof XQueryParser.FilterContext) {
             return handleFilter(state);
-        }
-        else if (state.tree instanceof XQueryParser.StringConstantTextContext){
+        } else if (state.tree instanceof XQueryParser.StringConstantTextContext) {
             return handleStringConstantText(state);
-        }
-        else if (state.tree instanceof XQueryParser.FContext) {
+        } else if (state.tree instanceof XQueryParser.FContext) {
             return computeFilter(state);
-        }
-        else if (state.tree instanceof XQueryParser.VariableContext) {
+        } else if (state.tree instanceof XQueryParser.VariableContext) {
             return handleVariable(state);
-        }
-        else if (state.tree instanceof XQueryParser.StringConstantContext) {
+        } else if (state.tree instanceof XQueryParser.StringConstantContext) {
             return handleStringConstant(state);
-        }
-        else if (state.tree instanceof XQueryParser.XqueryInParenthesisContext) {
+        } else if (state.tree instanceof XQueryParser.XqInParenthesisContext) {
             return handleXqueryInParenthesis(state);
-        }
-        else if (state.tree instanceof XQueryParser.NewTagContext){
+        } else if (state.tree instanceof XQueryParser.NewTagContext) {
             return handleNewTag(state);
-        }
-        else if (state.tree instanceof XQueryParser.ForBodyContext) {
+        } else if (state.tree instanceof XQueryParser.ForBodyContext) {
             return handleForBody(state);
-        }
-        else if (state.tree instanceof XQueryParser.LetClauseContext) {
+        } else if (state.tree instanceof XQueryParser.LetClauseContext) {
             return handleLetClause(state);
+        } else if (state.tree instanceof XQueryParser.ForClauseContext) {
+            return handleForClause(state);
+        } else if (state.tree instanceof XQueryParser.WhereClauseContext) {
+            return handleWhereClause(state);
+        } else if (state.tree instanceof XQueryParser.ForVariablesContext) {
+            return handleForVariable(state);
+        } else if (state.tree instanceof XQueryParser.LoopVariableAssignmentContext) {
+            return handleLoopVariableAssignment(state);
+        } else if (state.tree instanceof XQueryParser.LetVariablesContext) {
+            return handleLetVariables(state);
+        } else if (state.tree instanceof XQueryParser.LetVariableAssignmentContext) {
+            return handleLetVariableAssignment(state);
+        } else if (state.tree instanceof XQueryParser.CondContext) {
+            return handleCond(state);
+        } else if (state.tree instanceof XQueryParser.EmptyCondContext) {
+            return handleEmptyCondition(state);
+        } else if (state.tree instanceof XQueryParser.EqualityCondContext) {
+            return handleEqualityCondition(state);
+        } else if (state.tree instanceof XQueryParser.IdenticalCondContext) {
+            return handleIdentityCondition(state);
+        } else if (state.tree instanceof XQueryParser.SomeVarCondContext) {
+            return handleSomeVarCondition(state);
+        } else if (state.tree instanceof XQueryParser.ParenthesisCondContext) {
+            return handleParenthesisCondition(state);
+        } else if (state.tree instanceof XQueryParser.NotCondContext) {
+            return handleNotCondition(state);
+        } else if (state.tree instanceof XQueryParser.ReturnClauseContext) {
+            return handleReturnClause(state);
+        } else if (state.tree instanceof XQueryParser.MoreLoopVariablesContext) {
+            return handleMoreForVariables(state);
+        } else if (state.tree instanceof XQueryParser.MoreLetVariablesContext) {
+            return handleMoreLetVariables(state);
         }
-        return null;
+        return state;
     }
 
 }

@@ -10,8 +10,8 @@ public class IntegrationTest {
     static String expectedResultsPath = "src/test/resources/expected/";
     static String testResultsPath = "src/test/resources/results/";
     static String testQueryPath = "src/test/resources/query/";
-    static List<String> queryNames = List.of("query1", "query2", "query3", "query4", "query5", "query6", "query7", "query8", "query9", "query10");
-    static List<String> resultNames = List.of("result1", "result2", "result3", "result4", "result5", "result6", "result7", "result8", "result9", "result10");
+    static List<String> queryNames = List.of("query1", "query2", "query3", "query4", "query5", "query6", "query7", "query8", "query9", "query10", "query11", "query12");
+    static List<String> resultNames = List.of("result1", "result2", "result3", "result4", "result5", "result6", "result7", "result8", "result9", "result10", "result11", "result12");
 
     private static boolean runAndCompare(int index){
         String queryFileName = testQueryPath + queryNames.get(index) + ".txt";
@@ -72,4 +72,10 @@ public class IntegrationTest {
     public void testQuery10(){
         assert runAndCompare(9);
     }
+
+    @Test
+    public void testQuery11(){ assert runAndCompare(10); }
+
+    @Test
+    public void testQuery12(){ assert runAndCompare(11); }
 }

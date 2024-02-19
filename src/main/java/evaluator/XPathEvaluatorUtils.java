@@ -1,5 +1,6 @@
 package evaluator;
 
+import helper.CommonUtils;
 import helper.FilterFunctions;
 import helper.RelativePathFunctions;
 import helper.XMLParser;
@@ -9,36 +10,41 @@ import java.util.*;
 
 import static evaluator.QueryEvaluator.BASE_FILE_PATH;
 import static evaluator.QueryEvaluator.compute;
+import static helper.CommonUtils.*;
 
 public class XPathEvaluatorUtils {
 
     public static EvaluatorState handleAbsolutePath(EvaluatorState state) {
-        String filename = state.tree.getChild(1).getText().replaceAll("\"", "");
+        String filename = getValidChild(state.tree, 1).getText().replaceAll("\"", "");
         String absolutePath = BASE_FILE_PATH + filename;
         XMLParser parser = new XMLParser(absolutePath);
         Node root = parser.root;
-        if (state.tree.getChild(3).getText().equals("/")){
-            state.tree = state.tree.getChild(4);
+        if (getValidChild(state.tree, 3).getText().equals("/")){
+            state.tree = getValidChild(state.tree, 4);
             state.path = "";
             state.isRecursive = false;
             state.currentCandidates = Collections.singletonList(root);
-            return compute(state);
+            state = compute(state);
+            return state;
         }
-        else if (state.tree.getChild(3).getText().equals("//")){
-            state.tree = state.tree.getChild(4);
+        else if (getValidChild(state.tree, 3).getText().equals("//")){
+            state.tree = getValidChild(state.tree, 4);
             state.path = "";
             state.isRecursive = true;
             state.currentCandidates = RelativePathFunctions.getAllChildren(root);
-            return compute(state);
+            state = compute(state);
+            assert state != null;
+            state.currentCandidates = CommonUtils.getUniqueNodes(state.currentCandidates);
+            return state;
         }
         return null;
     }
 
     public static EvaluatorState handleRelativePath(EvaluatorState state) {
-        int childCount = state.tree.getChildCount();
+        int childCount = getValidChildCount(state.tree);
         if (childCount == 1){
             EvaluatorState intermediateResult = new EvaluatorState(state);
-            intermediateResult.tree = state.tree.getChild(0);
+            intermediateResult.tree = getValidChild(state.tree, 0);
             intermediateResult = compute(intermediateResult);
             assert intermediateResult != null;
             state.currentCandidates = intermediateResult.currentCandidates;
@@ -46,10 +52,10 @@ public class XPathEvaluatorUtils {
         }
         else if (childCount == 2){
             EvaluatorState intermediateResult = new EvaluatorState(state);
-            intermediateResult.tree = state.tree.getChild(0);
+            intermediateResult.tree = getValidChild(state.tree, 0);
             intermediateResult = compute(intermediateResult);
             assert intermediateResult != null;
-            intermediateResult.tree = state.tree.getChild(1);
+            intermediateResult.tree = getValidChild(state.tree, 1);
             intermediateResult = compute(intermediateResult);
             assert intermediateResult != null;
             state.currentCandidates = intermediateResult.currentCandidates;
@@ -57,22 +63,24 @@ public class XPathEvaluatorUtils {
         }
         else{
             EvaluatorState intermediateResult = new EvaluatorState(state);
-            intermediateResult.tree = state.tree.getChild(0);
+            intermediateResult.tree = getValidChild(state.tree, 0);
             intermediateResult = compute(intermediateResult);
-            intermediateResult.isRecursive = state.tree.getChild(1).getText().equals("//");
+            intermediateResult.isRecursive = getValidChild(state.tree, 1).getText().equals("//");
             assert intermediateResult != null;
-            if (state.tree.getChild(1).getText().equals(",")){
+            if (getValidChild(state.tree, 1).getText().equals(",")){
                 EvaluatorState intermediateResult2 = new EvaluatorState(state);
-                intermediateResult2.tree = state.tree.getChild(2);
+                intermediateResult2.tree = getValidChild(state.tree, 2);
                 intermediateResult2 = compute(intermediateResult2);
                 assert intermediateResult2 != null;
                 state.currentCandidates = RelativePathFunctions.mergeLists(
                         intermediateResult.currentCandidates,
                         intermediateResult2.currentCandidates);
             }else{
-                intermediateResult.tree = state.tree.getChild(2);
+                intermediateResult.currentCandidates = CommonUtils.getUniqueNodes(intermediateResult.currentCandidates);
+                intermediateResult.tree = getValidChild(state.tree, 2);
                 intermediateResult = compute(intermediateResult);
                 assert intermediateResult != null;
+                intermediateResult.currentCandidates = CommonUtils.getUniqueNodes(intermediateResult.currentCandidates);
                 state.currentCandidates = intermediateResult.currentCandidates;
                 state.filterMask = intermediateResult.filterMask;
             }
@@ -125,7 +133,7 @@ public class XPathEvaluatorUtils {
     }
 
     public static EvaluatorState handleAttribute(EvaluatorState state) {
-        String attrName = state.tree.getChild(2).getText();
+        String attrName = getValidChild(state.tree, 2).getText();
         List<Node> result = new ArrayList<>();
         for (Node n : state.currentCandidates){
             Node attr = RelativePathFunctions.getAttribute(n, attrName);
@@ -149,13 +157,13 @@ public class XPathEvaluatorUtils {
         return state;
     }
     public static EvaluatorState handleInParenthesis(EvaluatorState state) {
-        state.tree = state.tree.getChild(1);
+        state.tree = getValidChild(state.tree, 1);
         return compute(state);
     }
 
     public static EvaluatorState handleFilter(EvaluatorState state) {
         EvaluatorState intermediateResult = new EvaluatorState(state);
-        intermediateResult.tree = state.tree.getChild(1);
+        intermediateResult.tree = getValidChild(state.tree, 1);
         intermediateResult = computeFilter(intermediateResult);
         assert intermediateResult != null;
         state.filterMask = intermediateResult.filterMask;
@@ -170,13 +178,13 @@ public class XPathEvaluatorUtils {
     }
 
     public static EvaluatorState computeFilter(EvaluatorState state) {
-        int childCount = state.tree.getChildCount();
+        int childCount = getValidChildCount(state.tree);
 
         if (childCount == 1){
             List<Boolean> result = new ArrayList<>();
             for (int i = 0; i < state.currentCandidates.size(); i++){
                 EvaluatorState intermediateResult = new EvaluatorState(state);
-                intermediateResult.tree = state.tree.getChild(0);
+                intermediateResult.tree = getValidChild(state.tree, 0);
                 intermediateResult.currentCandidates = Collections.singletonList(state.currentCandidates.get(i));
                 intermediateResult = compute(intermediateResult);
                 assert intermediateResult != null;
@@ -189,11 +197,11 @@ public class XPathEvaluatorUtils {
             state.filterMask = result;
             return state;
         } else if (childCount == 2) {
-            if (state.tree.getChild(0).getText().equals("not")) {
+            if (getValidChild(state.tree, 0).getText().equals("not")) {
                 List<Boolean> result = new ArrayList<>();
                 for (int i = 0; i < state.currentCandidates.size(); i++){
                     EvaluatorState intermediateResult = new EvaluatorState(state);
-                    intermediateResult.tree = state.tree.getChild(1);
+                    intermediateResult.tree = getValidChild(state.tree, 1);
                     intermediateResult.currentCandidates = Collections.singletonList(state.currentCandidates.get(i));
                     intermediateResult = compute(intermediateResult);
                     assert intermediateResult != null;
@@ -203,20 +211,20 @@ public class XPathEvaluatorUtils {
                 return state;
             }
         }  else{
-            if (state.tree.getChild(0).getText().equals("(") && state.tree.getChild(2).getText().equals(")")){
-                state.tree = state.tree.getChild(1);
+            if (getValidChild(state.tree, 0).getText().equals("(") && getValidChild(state.tree, 2).getText().equals(")")){
+                state.tree = getValidChild(state.tree, 1);
                 return computeFilter(state);
             } else{
-                String operator = state.tree.getChild(1).getText();
+                String operator = getValidChild(state.tree, 1).getText();
                 List<Boolean> result = new ArrayList<>();
                 for (int i = 0; i < state.currentCandidates.size(); i++){
                     EvaluatorState intermediateResultLHS = new EvaluatorState(state);
-                    intermediateResultLHS.tree = state.tree.getChild(0);
+                    intermediateResultLHS.tree = getValidChild(state.tree, 0);
                     intermediateResultLHS.currentCandidates = Collections.singletonList(state.currentCandidates.get(i));
                     intermediateResultLHS = compute(intermediateResultLHS);
                     assert intermediateResultLHS != null;
                     EvaluatorState intermediateResultRHS = new EvaluatorState(state);
-                    intermediateResultRHS.tree = state.tree.getChild(2);
+                    intermediateResultRHS.tree = getValidChild(state.tree, 2);
                     intermediateResultRHS.currentCandidates = Collections.singletonList(state.currentCandidates.get(i));
                     intermediateResultRHS = compute(intermediateResultRHS);
                     assert intermediateResultRHS != null;

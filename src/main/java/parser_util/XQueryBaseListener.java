@@ -1,6 +1,5 @@
 // Generated from XQuery.g by ANTLR 4.13.1
 package parser_util;
-
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -29,13 +28,13 @@ public class XQueryBaseListener implements XQueryListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterXquery(XQueryParser.XqueryContext ctx) { }
+	@Override public void enterXq(XQueryParser.XqContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitXquery(XQueryParser.XqueryContext ctx) { }
+	@Override public void exitXq(XQueryParser.XqContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -53,25 +52,13 @@ public class XQueryBaseListener implements XQueryListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVariable(XQueryParser.VariableContext ctx) { }
+	@Override public void enterXqInParenthesis(XQueryParser.XqInParenthesisContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVariable(XQueryParser.VariableContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterXqueryInParenthesis(XQueryParser.XqueryInParenthesisContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitXqueryInParenthesis(XQueryParser.XqueryInParenthesisContext ctx) { }
+	@Override public void exitXqInParenthesis(XQueryParser.XqInParenthesisContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -125,6 +112,18 @@ public class XQueryBaseListener implements XQueryListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMoreLoopVariables(XQueryParser.MoreLoopVariablesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMoreLoopVariables(XQueryParser.MoreLoopVariablesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterLoopVariableAssignment(XQueryParser.LoopVariableAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -156,6 +155,18 @@ public class XQueryBaseListener implements XQueryListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLetVariables(XQueryParser.LetVariablesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMoreLetVariables(XQueryParser.MoreLetVariablesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMoreLetVariables(XQueryParser.MoreLetVariablesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -444,6 +455,42 @@ public class XQueryBaseListener implements XQueryListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitStringConstantText(XQueryParser.StringConstantTextContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVariable(XQueryParser.VariableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVariable(XQueryParser.VariableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOpenTag(XQueryParser.OpenTagContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOpenTag(XQueryParser.OpenTagContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCloseTag(XQueryParser.CloseTagContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCloseTag(XQueryParser.CloseTagContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

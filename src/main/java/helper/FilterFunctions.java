@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static helper.CommonUtils.getValidChildCount;
+
 public class FilterFunctions {
 
     public static boolean notEmpty(List<Node> nodes) {

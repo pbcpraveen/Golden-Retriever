@@ -1,5 +1,6 @@
 package helper;
 
+import org.antlr.v4.runtime.tree.ParseTree;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -14,7 +15,13 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import static helper.FilterFunctions.identical;
+import static helper.FilterFunctions.isValueEqual;
 
 public class CommonUtils {
 
@@ -96,4 +103,42 @@ public class CommonUtils {
         }
     }
 
+    public static ParseTree getValidChild(ParseTree tree, int index) {
+        int validChildCount = 0;
+        for (int i = 0; i < tree.getChildCount(); i++) {
+            if (tree.getChild(i).getText().trim().length() > 0) {
+                if (validChildCount == index) {
+                    return tree.getChild(i);
+                }
+                validChildCount++;
+            }
+        }
+        return tree;
+    }
+
+    public static int getValidChildCount(ParseTree tree) {
+        int validChildCount = 0;
+        for (int i = 0; i < tree.getChildCount(); i++) {
+            if (tree.getChild(i).getText().trim().length() > 0) {
+                validChildCount++;
+            }
+        }
+        return validChildCount;
+    }
+
+    public static List<Node> getUniqueNodes(List<Node> nodes) {
+        List<Node> uniqueList = new ArrayList<>();
+
+        outerLoop:
+        for (Node current : nodes) {
+            for (Node unique : uniqueList) {
+                if (identical(current, unique)) {
+                    continue outerLoop;
+                }
+            }
+            uniqueList.add(current);
+        }
+
+        return uniqueList;
+    }
 }

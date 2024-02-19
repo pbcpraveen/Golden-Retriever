@@ -15,70 +15,75 @@
 grammar XQuery;
 
 eval
-    : xquery
+    : Separators* xq Separators* EOF
     ;
 
-xquery
-    : variable
-    | stringConstant
-    | absolutePath
-    | xqueryInParenthesis
-    | xquery Comma xquery
-    | xquery ImmediateDescendent relativePath
-    | xquery Descendent relativePath
+xq
+    : stringConstant
+    | xqInParenthesis
     | newTag
     | forBody
     | letClause
+    | absolutePath
+    | xq Separators* Comma Separators* xq
+    | xq Separators* ImmediateDescendent Separators* relativePath
+    | xq Separators* Descendent Separators* relativePath
+    | variable
     ;
 
 stringConstant
     : stringConstantText
     ;
 
-variable
-    : Variable
-    ;
 
-xqueryInParenthesis
-    : OpenParen xquery CloseParen
+xqInParenthesis
+    : OpenParen Separators* xq Separators* CloseParen
     ;
 
 newTag
-    : OpenTag OpenBrace xquery CloseBrace  CloseTag
+    : openTag Separators* OpenBrace Separators* xq Separators* CloseBrace Separators*  closeTag
     ;
 
 forBody
-    : forClause letClause whereClause returnClause
+    : forClause Separators* letClause? Separators* whereClause?  Separators* returnClause
     ;
 
 forClause
-    : For forVariables In xquery
+    : For Separators* forVariables
     ;
 
 forVariables
-    : loopVariableAssignment
-    | loopVariableAssignment Comma forVariables
+    : loopVariableAssignment Separators* moreLoopVariables
+    | loopVariableAssignment
+    ;
+
+moreLoopVariables
+    : Comma Separators* forVariables
     ;
 
 loopVariableAssignment
-    : variable In xquery
+    : variable Separators* In Separators* xq
     ;
 
 letClause
-    : (Let letVariables)?
+    : Let Separators* letVariables
     ;
 
 letVariables
-    : letVariableAssignment
-    | letVariableAssignment Comma letVariables
+    : letVariableAssignment Separators* moreLetVariables
+    | letVariableAssignment
+    ;
+
+moreLetVariables
+    : Comma Separators* letVariables
     ;
 
 letVariableAssignment
-    : variable Assign xquery
+    : variable Separators* Assign Separators* xq
     ;
 
 whereClause
-    : (Where cond)?
+    : Where Separators* cond
     ;
 
 cond
@@ -87,44 +92,44 @@ cond
     | identicalCond
     | someVarCond
     | parenthesisCond
-    | cond And cond
-    | cond Or cond
+    | cond Separators* And Separators* cond
+    | cond Separators* Or Separators* cond
     | notCond
     ;
 
 emptyCond
-    : Empty OpenParen xquery CloseParen
+    : Empty Separators* OpenParen Separators* xq  Separators* CloseParen
     ;
 
 equalityCond
-    : xquery Equal xquery
-    | xquery Eq xquery
+    : xq Separators* Equal  Separators* xq
+    | xq Separators* Eq  Separators* xq
     ;
 
 identicalCond
-    : xquery Equals xquery
-    | xquery Is xquery
+    : xq Separators* Equals  Separators* xq
+    | xq Separators* Is Separators* xq
     ;
 
 someVarCond
-    : Some forVariables In xquery
+    : Some Separators+ forVariables Separators* Satisfies Separators* cond
     ;
 
 parenthesisCond
-    : OpenParen cond CloseParen
+    : OpenParen Separators* cond Separators* CloseParen
     ;
 
 notCond
-    : Not cond
+    : Not Separators* cond
     ;
 
 returnClause
-    : Return xquery
+    : Return Separators* xq
     ;
 
 absolutePath
-    : DocOpen fileName CloseParen ImmediateDescendent relativePath
-    | DocOpen fileName CloseParen Descendent relativePath
+    : DocOpen Separators* fileName Separators* CloseParen Separators* ImmediateDescendent Separators* relativePath
+    | DocOpen Separators* fileName Separators* CloseParen Separators* Descendent Separators* relativePath
     ;
 
 relativePath
@@ -135,10 +140,10 @@ relativePath
     | textFunction
     | attribute
     | inParenthesis
-    | relativePath ImmediateDescendent relativePath
-    | relativePath Descendent relativePath
-    | relativePath filter
-    | relativePath Comma relativePath
+    | relativePath Separators* ImmediateDescendent Separators* relativePath
+    | relativePath Separators* Descendent Separators* relativePath
+    | relativePath Separators* filter
+    | relativePath Separators* Comma Separators* relativePath
     ;
 
 children
@@ -154,7 +159,7 @@ parent
     ;
 
 filter
-    : OpenBracket f CloseBracket
+    : OpenBracket Separators* f Separators* CloseBracket
     ;
 
 attribute
@@ -172,15 +177,15 @@ inParenthesis
 
 f
     : relativePath
-    | relativePath Equal relativePath
-    | relativePath Eq relativePath
-    | relativePath Equals relativePath
-    | relativePath Is relativePath
-    | relativePath Equal stringConstantText
+    | relativePath Separators* Equal Separators* relativePath
+    | relativePath Separators* Eq Separators* relativePath
+    | relativePath Separators* Equals Separators* relativePath
+    | relativePath Separators* Is Separators* relativePath
+    | relativePath Separators* Equal Separators* stringConstantText
     | OpenParen f CloseParen
-    | f And f
-    | f Or f
-    | Not f
+    | f Separators* And Separators* f
+    | f Separators* Or Separators* f
+    | Not Separators* f
     ;
 
 tagName
@@ -192,14 +197,23 @@ attName
     ;
 
 fileName
-    : StringConstant
+    : FileName
     ;
 
 stringConstantText
     : StringConstant
     ;
 
+variable
+    : Variable
+    ;
+openTag
+    : OpenAngular PathTag CloseAngular
+    ;
 
+closeTag
+    : OpenAngularwithforwardslash PathTag CloseAngular
+    ;
 DocOpen: 'doc(' ;
 ImmediateDescendent: '/';
 Descendent: '//';
@@ -220,9 +234,9 @@ Text: 'text';
 Children: '*';
 Current: '.';
 Parent: '..';
+FileName: '"' ('A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | ' ')+ '.' ('x' 'm' 'l') '"';
 StringConstant: ('"' ~('\''|'"')* '"') | ('\'' ~('\''|'"')* '\'');
-PathTag: ('A' .. 'Z')+;
-Variable: ('a' .. 'z' | '0' .. '9' )+;
+Dollar: '$';
 For: 'for';
 Let: 'let';
 Some: 'some';
@@ -233,8 +247,12 @@ OpenBrace: '{';
 CloseBrace: '}';
 Assign: ':=';
 Return: 'return';
-OpenTag: '<' ('A' .. 'Z')+ '>';
-CloseTag: '</' ('A' .. 'Z')+ '>';
+Satisfies: 'satisfies';
+CloseAngular: '>';
+OpenAngular: '<';
+OpenAngularwithforwardslash: '<' '/';
+PathTag: ('A' .. 'Z' | 'a' .. 'z' )+;
+Variable: '$' ('a' .. 'z'| '0' .. '9')+;
+Separators : (' ' | '\t' | '\r' | '\n') ;
 
-/* Ignore all white spaces */
-WS : (' ' | '\t' | '\r' | '\n') -> skip;
+

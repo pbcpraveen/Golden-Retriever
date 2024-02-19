@@ -14,6 +14,9 @@ public class EvaluatorState {
 
     public List<Boolean> filterMask;
     public HashMap<String, List<Node>> context = new HashMap<>();
+    public HashMap<String, ParseTree> forBodyComponents = new HashMap<>();
+    public boolean whereClauseDecision = false;
+
 
     public EvaluatorState(ParseTree tree, String path, Node dataNode, boolean isRecursive) {
         this.tree = tree;
@@ -22,6 +25,8 @@ public class EvaluatorState {
         this.currentCandidates = new ArrayList<>();
         this.filterMask = new ArrayList<>();
         this.context = new HashMap<>();
+        this.forBodyComponents = new HashMap<>();
+        this.whereClauseDecision = false;
     }
 
     public EvaluatorState(EvaluatorState state) {
@@ -31,6 +36,8 @@ public class EvaluatorState {
         this.currentCandidates = new ArrayList<>(state.currentCandidates);
         this.filterMask = new ArrayList<>(state.filterMask);
         this.context = new HashMap<>(state.context);
+        this.forBodyComponents = new HashMap<>(state.forBodyComponents);
+        this.whereClauseDecision = state.whereClauseDecision;
     }
 
 
