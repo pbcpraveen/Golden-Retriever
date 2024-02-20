@@ -112,7 +112,7 @@ identicalCond
     ;
 
 someVarCond
-    : Some Separators+ forVariables Separators* Satisfies Separators* cond
+    : Some Separators* forVariables Separators* Satisfies Separators* cond
     ;
 
 parenthesisCond
@@ -171,7 +171,7 @@ textFunction
     ;
 
 inParenthesis
-    : OpenParen relativePath CloseParen
+    : OpenParen Separators* relativePath Separators* CloseParen
     ;
 
 
