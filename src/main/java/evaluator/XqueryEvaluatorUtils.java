@@ -322,7 +322,7 @@ public class XqueryEvaluatorUtils {
         newState.tree = getValidChild(state.tree, 2);
         newState = compute(newState);
         assert newState != null;
-        state.whereClauseDecision = newState.currentCandidates.isEmpty();
+        state.whereClauseDecision = newState.currentCandidates.size() == 0;
         return state;
     }
 
