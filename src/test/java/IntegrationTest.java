@@ -10,8 +10,8 @@ public class IntegrationTest {
     static String expectedResultsPath = "src/test/resources/expected/";
     static String testResultsPath = "src/test/resources/results/";
     static String testQueryPath = "src/test/resources/query/";
-    static List<String> queryNames = List.of("query1", "query2", "query3", "query4", "query5", "query6", "query7", "query8", "query9", "query10", "query11", "query12");
-    static List<String> resultNames = List.of("result1", "result2", "result3", "result4", "result5", "result6", "result7", "result8", "result9", "result10", "result11", "result12");
+    static List<String> queryNames = List.of("query1", "query2", "query3", "query4", "query5", "query6", "query7", "query8", "query9", "query10", "query11", "query12", "query13", "query14", "query15", "query14_extra");
+    static List<String> resultNames = List.of("result1", "result2", "result3", "result4", "result5", "result6", "result7", "result8", "result9", "result10", "result11", "result12", "result13", "result14", "result15", "result14_extra");
 
     private static boolean runAndCompare(int index){
         String queryFileName = testQueryPath + queryNames.get(index) + ".txt";
@@ -78,4 +78,16 @@ public class IntegrationTest {
 
     @Test
     public void testQuery12(){ assert runAndCompare(11); }
+
+    @Test
+    public void testQuery13(){ assert runAndCompare(12); }
+
+    @Test
+    public void testQuery14(){ assert runAndCompare(13); }
+
+    @Test
+    public void testQuery15(){ assert runAndCompare(14); }
+
+    @Test
+    public void testQuery14_extra(){ assert runAndCompare(15); }
 }
