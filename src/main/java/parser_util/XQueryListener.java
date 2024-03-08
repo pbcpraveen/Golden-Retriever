@@ -108,6 +108,16 @@ public interface XQueryListener extends ParseTreeListener {
 	 */
 	void exitLoopVariableAssignment(XQueryParser.LoopVariableAssignmentContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link XQueryParser#letClauseAndXq}.
+	 * @param ctx the parse tree
+	 */
+	void enterLetClauseAndXq(XQueryParser.LetClauseAndXqContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XQueryParser#letClauseAndXq}.
+	 * @param ctx the parse tree
+	 */
+	void exitLetClauseAndXq(XQueryParser.LetClauseAndXqContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link XQueryParser#letClause}.
 	 * @param ctx the parse tree
 	 */

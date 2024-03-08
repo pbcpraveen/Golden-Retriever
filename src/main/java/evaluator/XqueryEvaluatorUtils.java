@@ -93,7 +93,9 @@ public class XqueryEvaluatorUtils {
     public static EvaluatorState handleXqueryInParenthesis(EvaluatorState state) {
         EvaluatorState newState = new EvaluatorState(state);
         newState.tree = getValidChild(state.tree, 1);
-        return compute(newState);
+        newState = compute(newState);
+        state.currentCandidates = compute(newState).currentCandidates;
+        return state;
     }
 
     public static EvaluatorState handleNewTag(EvaluatorState state) {
@@ -155,6 +157,7 @@ public class XqueryEvaluatorUtils {
         if (childCount == 1) {
             String variableName = getValidChild(getValidChild(newState.tree, 0), 0).getText();
             newState.tree = getValidChild(getValidChild(newState.tree, 0), 2);
+            newState.forBodyComponents = new HashMap<>();
             newState = compute(newState);
             assert newState != null;
             List<Node> nodes = newState.currentCandidates;
@@ -199,10 +202,12 @@ public class XqueryEvaluatorUtils {
             return state;
         } else {
             String variable1 = getValidChild(getValidChild(newState.tree, 0), 0).getText();
-            newState.tree = getValidChild(getValidChild(newState.tree, 0), 2);
-            newState = compute(newState);
-            assert newState != null;
-            List<Node> nodes = newState.currentCandidates;
+            EvaluatorState left = new EvaluatorState(newState);
+            left.tree = getValidChild(getValidChild(newState.tree, 0), 2);
+            left.forBodyComponents = new HashMap<>();
+            left = compute(left);
+            assert left != null;
+            List<Node> nodes = left.currentCandidates;
             List<Node> result = new ArrayList<>();
             boolean someCondition = false;
             for (Node node : nodes) {
@@ -233,6 +238,7 @@ public class XqueryEvaluatorUtils {
         ParseTree condition = getValidChild(state.tree, 1);
         EvaluatorState newState = new EvaluatorState(state);
         newState.tree = condition;
+        newState.forBodyComponents = new HashMap<>();
         newState = compute(newState);
         assert newState != null;
         state.whereClauseDecision = newState.whereClauseDecision;
@@ -253,6 +259,7 @@ public class XqueryEvaluatorUtils {
     public static EvaluatorState handleLetVariables(EvaluatorState state) {
         EvaluatorState newState = new EvaluatorState(state);
         int childCount = getValidChildCount(newState.tree);
+        newState.forBodyComponents = new HashMap<>();
 
         newState.tree = getValidChild(newState.tree, 0);
         newState = compute(newState);
@@ -408,9 +415,23 @@ public class XqueryEvaluatorUtils {
     public static EvaluatorState handleReturnClause(EvaluatorState state) {
         EvaluatorState newState = new EvaluatorState(state);
         newState.tree = getValidChild(state.tree, 1);
+        newState.forBodyComponents = new HashMap<>();
         newState = compute(newState);
         assert newState != null;
         state.currentCandidates = newState.currentCandidates;
+        return state;
+    }
+
+    public static EvaluatorState handleLetClauseWithXquery(EvaluatorState state) {
+        EvaluatorState newState = new EvaluatorState(state);
+        newState.tree = getValidChild(state.tree, 0);
+        newState = compute(newState);
+        assert newState != null;
+        EvaluatorState computedState = new EvaluatorState(state);
+        computedState.context = newState.context;
+        computedState.tree = getValidChild(state.tree, 1);
+        computedState = compute(computedState);
+        state.currentCandidates = computedState.currentCandidates;
         return state;
     }
 

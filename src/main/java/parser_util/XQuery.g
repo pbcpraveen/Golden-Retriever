@@ -23,7 +23,7 @@ xq
     | xqInParenthesis
     | newTag
     | forBody
-    | letClause
+    | letClauseAndXq
     | absolutePath
     | xq Separators* Comma Separators* xq
     | xq Separators* ImmediateDescendent Separators* relativePath
@@ -63,6 +63,10 @@ moreLoopVariables
 
 loopVariableAssignment
     : variable Separators* In Separators* xq
+    ;
+
+letClauseAndXq
+    : letClause Separators* xq
     ;
 
 letClause

@@ -136,6 +136,18 @@ public class XQueryBaseListener implements XQueryListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterLetClauseAndXq(XQueryParser.LetClauseAndXqContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLetClauseAndXq(XQueryParser.LetClauseAndXqContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterLetClause(XQueryParser.LetClauseContext ctx) { }
 	/**
 	 * {@inheritDoc}

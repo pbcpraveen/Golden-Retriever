@@ -119,6 +119,8 @@ public class QueryEvaluator {
             return handleMoreForVariables(state);
         } else if (state.tree instanceof XQueryParser.MoreLetVariablesContext) {
             return handleMoreLetVariables(state);
+        } else if (state.tree instanceof XQueryParser.LetClauseAndXqContext){
+            return handleLetClauseWithXquery(state);
         }
         return state;
     }
