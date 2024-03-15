@@ -25,6 +25,7 @@ xq
     | forBody
     | letClauseAndXq
     | absolutePath
+    | joinBody
     | xq Separators* Comma Separators* xq
     | xq Separators* ImmediateDescendent Separators* relativePath
     | xq Separators* Descendent Separators* relativePath
@@ -129,6 +130,19 @@ notCond
 
 returnClause
     : Return Separators* xq
+    ;
+
+joinBody
+    : Join Separators* OpenParen Separators* xq Separators* Comma Separators* xq Separators* Comma Separators*  joinCond Separators*  Comma Separators* joinCond Separators* CloseParen
+    ;
+
+joinCond
+    : OpenBracket Separators* multipleTags* Separators* CloseBracket
+    ;
+
+multipleTags
+    : tagName Separators* Comma Separators* multipleTags
+    | tagName
     ;
 
 absolutePath
@@ -238,7 +252,7 @@ Text: 'text';
 Children: '*';
 Current: '.';
 Parent: '..';
-FileName: '"' ('A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | ' ')+ '.' ('x' 'm' 'l') '"';
+FileName: '"' ('A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | ' ' | '-')+ '.' ('x' 'm' 'l') '"';
 StringConstant: ('"' ~('\''|'"')* '"') | ('\'' ~('\''|'"')* '\'');
 Dollar: '$';
 For: 'for';
@@ -255,7 +269,8 @@ Satisfies: 'satisfies';
 CloseAngular: '>';
 OpenAngular: '<';
 OpenAngularwithforwardslash: '<' '/';
-PathTag: ('A' .. 'Z' | 'a' .. 'z' )+;
+Join: 'join';
+PathTag: ('A' .. 'Z' | 'a' .. 'z' | '0' .. '9')+;
 Variable: '$' ('a' .. 'z'| '0' .. '9')+;
 Separators : (' ' | '\t' | '\r' | '\n') ;
 

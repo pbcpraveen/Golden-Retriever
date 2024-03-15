@@ -269,7 +269,7 @@ public class XqueryEvaluatorUtils {
             return state;
         } else {
             newState = new EvaluatorState(state);
-            newState.tree = getValidChild(state.tree, 2);
+            newState.tree = getValidChild(state.tree, 1);
             newState = compute(newState);
             assert newState != null;
             state.context = newState.context;

@@ -141,4 +141,14 @@ public class CommonUtils {
 
         return uniqueList;
     }
+
+    public static void saveToFile(String content, String fileName) {
+        try {
+            FileWriter writer = new FileWriter(fileName);
+            writer.write(content);
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
