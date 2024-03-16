@@ -27,7 +27,11 @@ public class Runner {
             queryFileName = optimizedQueryFileName;
         }
         QueryEvaluator evaluator = new QueryEvaluator(queryFileName, true);
+        //calculate time of evaluation
+        long startTime = System.currentTimeMillis();
         EvaluatorState result = evaluator.evaluate();
+        long endTime = System.currentTimeMillis();
+        System.out.println("Time taken: " + (endTime - startTime) + "ms");
         DocumentBuilder builder;
         try {
             builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();

@@ -6,8 +6,8 @@ return <tuple>{
 	<sp> {$sp} </sp>
 }</tuple>, 
 for $s in doc("j_caesar.xml")//SPEAKER, 
-	$sp in $a//SPEAKER, 
 	$stxt in $s/text()
+where $stxt = "CAESAR"
 return <tuple>{
 	<s> {$s} </s>, 
 	<stxt> {$stxt} </stxt>

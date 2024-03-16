@@ -121,6 +121,8 @@ public class QueryEvaluator {
             return handleMoreLetVariables(state);
         } else if (state.tree instanceof XQueryParser.LetClauseAndXqContext){
             return handleLetClauseWithXquery(state);
+        } else if (state.tree instanceof XQueryParser.JoinBodyContext) {
+            return handleJoin(state);
         }
         return state;
     }

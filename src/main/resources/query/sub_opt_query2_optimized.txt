@@ -15,5 +15,5 @@ return <tuple>{
 	<id2> {$id2} </id2>, 
 	<a2> {$a2} </a2>
 }</tuple>, 
-	[$a1], [$a2])
+	[a1], [a2])
 return <d>{<id1>{$tuple/id1/*}</id1>,<id2>{$tuple/id2/*}</id2>}</d>

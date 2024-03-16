@@ -9,6 +9,7 @@ import parser_util.XQueryParser;
 
 import javax.xml.parsers.DocumentBuilder;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static evaluator.QueryEvaluator.compute;
 import static helper.CommonUtils.getValidChild;
@@ -435,6 +436,112 @@ public class XqueryEvaluatorUtils {
         return state;
     }
 
+    public static String getStringValueOfTag(Node node, String tagName) {
+        List<Node> nodes = RelativePathFunctions.relativePath(node, tagName);
+        if (nodes.size() == 0) {
+            return "";
+        }
+        return nodes.get(0).getTextContent();
+    }
+
+    public static boolean isNodeMatch(Node left, Node right, List<String> leftConditions, List<String> rightConditions) {
+        for (int i = 0; i < leftConditions.size(); i++) {
+            String leftValue = getStringValueOfTag(left, leftConditions.get(i));
+            String rightValue = getStringValueOfTag(right, rightConditions.get(i));
+            if (!leftValue.equals(rightValue)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isNodeGreaterThan(Node left, Node right, String leftCondition, String rightCondition) {
+        String leftValue = getStringValueOfTag(left, leftCondition);
+        String rightValue = getStringValueOfTag(right, rightCondition);
+        return leftValue.compareTo(rightValue) > 0;
+
+    }
+
+    public static EvaluatorState handleJoin(EvaluatorState state) {
+        EvaluatorState left = new EvaluatorState(state);
+        left.tree = getValidChild(state.tree, 2);
+        left = compute(left);
+        assert left != null;
+        EvaluatorState right = new EvaluatorState(state);
+        right.tree = getValidChild(state.tree, 4);
+        right = compute(right);
+        assert right != null;
+        boolean isCartesian = false;
+        String cond1 = getValidChild(state.tree, 6).getText();
+        String cond2 = getValidChild(state.tree, 8).getText();
+        cond1 = cond1.replace("[", "").replace("]", "").trim();
+        cond2 = cond2.replace("[", "").replace("]", "").trim();
+        if (cond1.length() == 0 && cond2.length() == 0) {
+            isCartesian = true;
+        }
+
+        if (isCartesian) {
+            List<Node> result = new ArrayList<>();
+            for (Node leftNode : left.currentCandidates) {
+                for (Node rightNode : right.currentCandidates) {
+                    List<Node> newNodes = new ArrayList<>();
+                    for (int i = 0; i < leftNode.getChildNodes().getLength(); i++) {
+                        newNodes.add(leftNode.getChildNodes().item(i));
+                    }
+                    for (int i = 0; i < rightNode.getChildNodes().getLength(); i++) {
+                        newNodes.add(rightNode.getChildNodes().item(i));
+                    }
+                    Node newNode = CommonUtils.createNode("tuple", newNodes);
+                    result.add(newNode);
+                }
+            }
+            state.currentCandidates = result;
+            return state;
+        } else {
+            String leftCond = cond1.split(",")[0].strip();
+            String rightCond = cond2.split(",")[0].strip();
+
+            // sort the nodes
+            List<Node> leftNodes = new ArrayList<>(left.currentCandidates);
+            List<Node> rightNodes = new ArrayList<>(right.currentCandidates);
+
+
+            leftNodes.sort(Comparator.comparing(o -> getStringValueOfTag(o, leftCond)));
+            rightNodes.sort(Comparator.comparing(o -> getStringValueOfTag(o, rightCond)));
+
+
+            int leftPointer = 0;
+            int rightPointer = 0;
+            List<Node> result = new ArrayList<>();
+
+            List<String> leftConditions = Arrays.stream(cond1.split(",")).map(String::strip).collect(Collectors.toList());
+            List<String> rightConditions = Arrays.stream(cond2.split(",")).map(String::strip).collect(Collectors.toList());
+
+            while (leftPointer < leftNodes.size() && rightPointer < rightNodes.size()) {
+                int tempRightPointer = rightPointer;
+                while (tempRightPointer < rightNodes.size() &&
+                        isNodeMatch(leftNodes.get(leftPointer), rightNodes.get(tempRightPointer), leftConditions, rightConditions)) {
+                    List<Node> newNodes = new ArrayList<>();
+                    for (int i = 0; i < leftNodes.get(leftPointer).getChildNodes().getLength(); i++) {
+                        newNodes.add(leftNodes.get(leftPointer).getChildNodes().item(i));
+                    }
+                    for (int i = 0; i < rightNodes.get(tempRightPointer).getChildNodes().getLength(); i++) {
+                        newNodes.add(rightNodes.get(tempRightPointer).getChildNodes().item(i));
+                    }
+                    Node newNode = CommonUtils.createNode("tuple", newNodes);
+                    result.add(newNode);
+                    tempRightPointer++;
+                }
+                leftPointer++;
+                if(leftPointer < leftNodes.size() && rightPointer < rightNodes.size() &&
+                        !isNodeMatch(leftNodes.get(leftPointer), rightNodes.get(rightPointer), leftConditions, rightConditions)) {
+                    rightPointer = tempRightPointer;
+                }
+            }
+            state.currentCandidates = result;
+            return state;
+        }
+    }
 }
 
 

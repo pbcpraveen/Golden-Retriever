@@ -152,7 +152,7 @@ public class JoinOptimizerHelper {
     public static List<String> getAllVariablesInString(String string){
         ArrayList<String> variables = new ArrayList<>();
         // split if joined by "and", " ", "/". "//"
-        String[] words = string.split("and| |/|//");
+        ArrayList<String> words = Arrays.stream(string.split("and| |/|//")).map(String::trim).collect(Collectors.toCollection(ArrayList::new));
         for (String word : words){
             if (word.contains("$")){
                 variables.add(word);
@@ -166,7 +166,7 @@ public class JoinOptimizerHelper {
         for (String condition : conditions){
             Set <String> conditionVariables = new HashSet<>(getAllVariablesInString(condition));
             Set <String> variableSet = new HashSet<>(variables);
-            if (conditionVariables.containsAll(variableSet)) {
+            if (variableSet.containsAll(conditionVariables)) {
                 validConditions.add(condition);
             }
         }
@@ -190,6 +190,10 @@ public class JoinOptimizerHelper {
         return validConditions;
     }
 
+    public static boolean doesStringContainVariable(String string, String variable){
+        ArrayList<String> parts = Arrays.stream(string.split(" ")).map(String::trim).collect(Collectors.toCollection(ArrayList::new));
+        return parts.contains(variable);
+    }
     public static List<IndependentJoinGroup> generateIndependentJoinGroups(ParseTree tree, ArrayList<ArrayList<String>> orderedIndependentGroup){
         ArrayList<String> selections = new ArrayList<>();
         ArrayList<String> projections = new ArrayList<>();
@@ -206,7 +210,7 @@ public class JoinOptimizerHelper {
             IndependentJoinGroup independentJoinGroup = new IndependentJoinGroup();
             for (String variable : independentGroup){
                for (String selection : selections){
-                   if (selection.contains(variable) && !independentJoinGroup.selections.contains(selection)){
+                   if (doesStringContainVariable(selection, variable) && !independentJoinGroup.selections.contains(selection)){
                        independentJoinGroup.selections.add(selection);
                    }
                }
@@ -409,7 +413,7 @@ public class JoinOptimizerHelper {
             String replaceString = "$tuple/" + variableName + "/*";
             // replace all occurrences of variable with $tuple/variable/*
             // escape $ in variable
-            variable = "\\$" + variableName;
+            variable = "\\$" + variableName + "(?!\\w)";
             returnString = returnString.replaceAll(variable, Matcher.quoteReplacement(replaceString));
         }
         optimizedQuery.append(returnString);

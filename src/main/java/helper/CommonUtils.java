@@ -142,6 +142,22 @@ public class CommonUtils {
         return uniqueList;
     }
 
+    public static List<Node> getUniqueValueNodes(List<Node> nodes) {
+        List<Node> uniqueList = new ArrayList<>();
+
+        outerLoop:
+        for (Node current : nodes) {
+            for (Node unique : uniqueList) {
+                if (isValueEqual(current, unique)) {
+                    continue outerLoop;
+                }
+            }
+            uniqueList.add(current);
+        }
+
+        return uniqueList;
+    }
+
     public static void saveToFile(String content, String fileName) {
         try {
             FileWriter writer = new FileWriter(fileName);
