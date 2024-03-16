@@ -17,7 +17,11 @@ public class XPathEvaluatorUtils {
     public static EvaluatorState handleAbsolutePath(EvaluatorState state) {
         String filename = getValidChild(state.tree, 1).getText().replaceAll("\"", "");
         String absolutePath = BASE_FILE_PATH + filename;
+        // calculate time to parse the xml file
+        long startTime = System.currentTimeMillis();
         XMLParser parser = new XMLParser(absolutePath);
+        long endTime = System.currentTimeMillis();
+        System.out.println("Time taken to parse the XML file: " + (endTime - startTime) + "ms");
         Node root = parser.root;
         if (getValidChild(state.tree, 3).getText().equals("/")){
             state.tree = getValidChild(state.tree, 4);

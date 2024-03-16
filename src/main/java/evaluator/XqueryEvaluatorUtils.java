@@ -444,10 +444,11 @@ public class XqueryEvaluatorUtils {
         return nodes.get(0).getTextContent();
     }
 
-    public static boolean isNodeMatch(Node left, Node right, List<String> leftConditions, List<String> rightConditions) {
+    public static boolean isNodeMatch(Node left, Node right, List<String> leftConditions, List<String> rightConditions,
+                                      HashMap<String, String> leftConditionsValues, HashMap<String, String> rightConditionsValues) {
         for (int i = 0; i < leftConditions.size(); i++) {
-            String leftValue = getStringValueOfTag(left, leftConditions.get(i));
-            String rightValue = getStringValueOfTag(right, rightConditions.get(i));
+            String leftValue = leftConditionsValues.get(leftConditions.get(i));
+            String rightValue = rightConditionsValues.get(rightConditions.get(i));
             if (!leftValue.equals(rightValue)) {
                 return false;
             }
@@ -463,6 +464,7 @@ public class XqueryEvaluatorUtils {
     }
 
     public static EvaluatorState handleJoin(EvaluatorState state) {
+        long startTime = System.currentTimeMillis();
         EvaluatorState left = new EvaluatorState(state);
         left.tree = getValidChild(state.tree, 2);
         left = compute(left);
@@ -496,6 +498,8 @@ public class XqueryEvaluatorUtils {
                 }
             }
             state.currentCandidates = result;
+            long endTime = System.currentTimeMillis();
+            System.out.println("Time taken perform join: " + (endTime - startTime) + "ms");
             return state;
         } else {
             String leftCond = cond1.split(",")[0].strip();
@@ -517,10 +521,28 @@ public class XqueryEvaluatorUtils {
             List<String> leftConditions = Arrays.stream(cond1.split(",")).map(String::strip).collect(Collectors.toList());
             List<String> rightConditions = Arrays.stream(cond2.split(",")).map(String::strip).collect(Collectors.toList());
 
+            HashMap<Integer, HashMap<String, String>> joinValueLookUpLeft = new HashMap<>();
+            HashMap<Integer, HashMap<String, String>> joinValueLookUpRight = new HashMap<>();
+            for(int r = 0; r<rightNodes.size(); r++){
+                HashMap<String, String> temp = new HashMap<>();
+                for(String condition: rightConditions){
+                    temp.put(condition, getStringValueOfTag(rightNodes.get(r), condition));
+                }
+                joinValueLookUpRight.put(r, temp);
+            }
+
+            for (int l=0; l< leftNodes.size(); l++){
+                HashMap<String, String> temp = new HashMap<>();
+                for (String condition: leftConditions){
+                    temp.put(condition, getStringValueOfTag(leftNodes.get(l), condition));
+                }
+                joinValueLookUpLeft.put(l, temp);
+            }
+
             while (leftPointer < leftNodes.size() && rightPointer < rightNodes.size()) {
                 int tempRightPointer = rightPointer;
                 while (tempRightPointer < rightNodes.size() &&
-                        isNodeMatch(leftNodes.get(leftPointer), rightNodes.get(tempRightPointer), leftConditions, rightConditions)) {
+                        isNodeMatch(leftNodes.get(leftPointer), rightNodes.get(tempRightPointer), leftConditions, rightConditions, joinValueLookUpLeft.get(leftPointer), joinValueLookUpRight.get(rightPointer))) {
                     List<Node> newNodes = new ArrayList<>();
                     for (int i = 0; i < leftNodes.get(leftPointer).getChildNodes().getLength(); i++) {
                         newNodes.add(leftNodes.get(leftPointer).getChildNodes().item(i));
@@ -534,11 +556,13 @@ public class XqueryEvaluatorUtils {
                 }
                 leftPointer++;
                 if(leftPointer < leftNodes.size() && rightPointer < rightNodes.size() &&
-                        !isNodeMatch(leftNodes.get(leftPointer), rightNodes.get(rightPointer), leftConditions, rightConditions)) {
+                        !isNodeMatch(leftNodes.get(leftPointer), rightNodes.get(rightPointer), leftConditions, rightConditions, joinValueLookUpLeft.get(leftPointer), joinValueLookUpRight.get(rightPointer))) {
                     rightPointer = tempRightPointer;
                 }
             }
             state.currentCandidates = result;
+            long endTime = System.currentTimeMillis();
+            System.out.println("Time taken perform join: " + (endTime - startTime) + "ms");
             return state;
         }
     }
