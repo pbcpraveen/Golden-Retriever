@@ -18,13 +18,14 @@ public class Runner {
         if (args.length == 3){
             doOptimize = Boolean.parseBoolean(args[2]);
         }
-
-        Optimizer optimizer = new Optimizer(queryFileName);
-        String optimizedQuery = optimize(optimizer.state).optimizedQuery;
+        if (doOptimize) {
+            Optimizer optimizer = new Optimizer(queryFileName);
+            String optimizedQuery = optimize(optimizer.state).optimizedQuery;
             // save to file
-        String optimizedQueryFileName = queryFileName.replace(".txt", "_optimized.txt");
-        CommonUtils.saveToFile(optimizedQuery, optimizedQueryFileName);
-        queryFileName = optimizedQueryFileName;
+            String optimizedQueryFileName = queryFileName.replace(".txt", "_optimized.txt");
+            CommonUtils.saveToFile(optimizedQuery, optimizedQueryFileName);
+            queryFileName = optimizedQueryFileName;
+        }
 
         QueryEvaluator evaluator = new QueryEvaluator(queryFileName, true);
         //calculate time of evaluation
