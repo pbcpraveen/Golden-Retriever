@@ -1,8 +1,10 @@
 package optimizer;
 
 import org.antlr.v4.runtime.tree.ParseTree;
+import parser_util.XQueryParser;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 import static helper.CommonUtils.getValidChild;
 import static helper.CommonUtils.getValidChildCount;
@@ -170,7 +172,11 @@ public class OptimizerUtil {
     }
 
     public static OptimizerState handleForBody(OptimizerState state) {
-        state.optimizedQuery = JoinOptimizer.optimizeJoin(state);
+        if (isOptimizeable(state.tree)) {
+            state.optimizedQuery = JoinOptimizer.optimizeJoin(state);
+        } else {
+            state.optimizedQuery = state.tree.getText();
+        }
         return state;
     }
 
@@ -311,6 +317,58 @@ public class OptimizerUtil {
         return state;
     }
 
+    public static String getConditionTypeString(ParseTree tree) {
+        if (tree instanceof XQueryParser.EmptyCondContext) {
+            return "empty";
+        } else if (tree instanceof XQueryParser.EqualityCondContext) {
+            return "equality";
+        } else if (tree instanceof XQueryParser.IdenticalCondContext) {
+            return "identity";
+        } else if (tree instanceof XQueryParser.SomeVarCondContext) {
+            return "someVar";
+        } else if (tree instanceof XQueryParser.ParenthesisCondContext) {
+            return "parenthesis";
+        } else if (tree instanceof XQueryParser.NotCondContext) {
+            return "not";
+        } else if (tree instanceof XQueryParser.CondContext) {
+            return "cond";
+        } else {
+            return "unknown";
+        }
+    }
+
+    public static void getAllConditionTypes(ParseTree tree, HashSet<String> conditionTypes) {
+        int childCount = getValidChildCount(tree);
+        if (childCount == 1) {
+            ParseTree child = getValidChild(tree, 0);
+            if (! (child instanceof XQueryParser.CondContext)) {
+                ParseTree innerChild = getValidChild(child, 0);
+                if (innerChild instanceof XQueryParser.ParenthesisCondContext) {
+                    getAllConditionTypes(innerChild, conditionTypes);
+                } else {
+                    conditionTypes.add(getConditionTypeString(innerChild));
+                }
+            }
+        } else {
+            ParseTree leftChild = getValidChild(tree, 0);
+            String operator = getValidChild(tree, 1).getText();
+            switch (operator){
+                case "and":
+                    conditionTypes.add("and");
+                    break;
+                case "or":
+                    conditionTypes.add("or");
+                    break;
+            }
+            ParseTree rightChild = getValidChild(tree, 2);
+            if (leftChild instanceof XQueryParser.CondContext) {
+                getAllConditionTypes(leftChild, conditionTypes);
+            }
+            if (rightChild instanceof XQueryParser.CondContext) {
+                getAllConditionTypes(rightChild, conditionTypes);
+            }
+        }
+    }
     public static OptimizerState handleLetClauseWithXquery(OptimizerState state) {
         OptimizerState newState = new OptimizerState(state);
         newState.tree = getValidChild(state.tree, 0);
@@ -321,6 +379,53 @@ public class OptimizerUtil {
         newState = optimize(newState);
         state.optimizedQuery += " " + newState.optimizedQuery;
         return state;
+    }
+
+    public static boolean isOptimizeable(ParseTree joinBody) {
+        int childCount = getValidChildCount(joinBody);
+        // check id there is no let clause
+        for (int i = 0; i < childCount; i++) {
+            if (getValidChild(joinBody, i) instanceof XQueryParser.LetClauseContext) {
+                return false;
+            }
+        }
+
+        // get all conditions types in the where clause
+        HashSet<String> conditionTypes = new HashSet<>();
+        ParseTree whereClause = null;
+        for (int i = 0; i < childCount; i++) {
+            if (getValidChild(joinBody, i) instanceof XQueryParser.WhereClauseContext) {
+                whereClause = getValidChild(joinBody, i);
+                break;
+            }
+        }
+        if (whereClause != null) {
+            ParseTree condition = getValidChild(whereClause, 1);
+            getAllConditionTypes(condition, conditionTypes);
+            HashSet<String> optimizeableConditions = new HashSet<>();
+            optimizeableConditions.add("equality");
+            optimizeableConditions.add("and");
+
+            if (!optimizeableConditions.containsAll(conditionTypes)){
+                return false;
+            }
+
+        }
+        ParseTree returnClause = null;
+        for (int i = 0; i < childCount; i++) {
+            if (getValidChild(joinBody, i) instanceof XQueryParser.ReturnClauseContext) {
+                returnClause = getValidChild(joinBody, i);
+                break;
+            }
+        }
+        if (returnClause != null) {
+            String returnClauseString = getValidChild(returnClause, 1).getText();
+            if (returnClauseString.contains("for") || returnClauseString.contains("let")) {
+                return false;
+            }
+        }
+        return true;
+
     }
 
 }
