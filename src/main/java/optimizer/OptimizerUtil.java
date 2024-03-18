@@ -333,7 +333,7 @@ public class OptimizerUtil {
         } else if (tree instanceof XQueryParser.CondContext) {
             return "cond";
         } else {
-            return "unknown";
+            return "var";
         }
     }
 
@@ -405,6 +405,7 @@ public class OptimizerUtil {
             HashSet<String> optimizeableConditions = new HashSet<>();
             optimizeableConditions.add("equality");
             optimizeableConditions.add("and");
+            optimizeableConditions.add("var");
 
             if (!optimizeableConditions.containsAll(conditionTypes)){
                 return false;
